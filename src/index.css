@@ -89,7 +89,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', serif;
+    font-family: 'Inter', Stele;
   }
 
   html {
@@ -107,7 +107,7 @@
   }
 
   .gradient-bg {
-    @apply bg-gradient-to-br from-serif-blue via-serif-blue/95 to-serif-blue/90;
+    @apply bg-gradient-to-br from-Stele-blue via-Stele-blue/95 to-Stele-blue/90;
   }
   
   /* Logo animation */
@@ -124,7 +124,7 @@
     animation: float 3s ease-in-out infinite;
   }
   
-  .serif-logo-animated .magnifier {
+  .Stele-logo-animated .magnifier {
     transition: transform 0.3s ease-out;
   }
 }

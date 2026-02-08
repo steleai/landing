@@ -68,7 +68,7 @@ const ContactSection = () => {
     <section id="contact" className="section-padding bg-white dark:bg-gray-900">
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-6xl font-bold text-serif-blue dark:text-white mb-4">{t('contactUs')}</h2>
+          <h2 className="text-3xl md:text-6xl font-bold text-Stele-blue dark:text-white mb-4">{t('contactUs')}</h2>
           <p className="text-2xl text-gray-700 dark:text-gray-300">
             {t('contactDesc')}
           </p>
@@ -78,24 +78,24 @@ const ContactSection = () => {
           <div className="lg:col-span-2 space-y-6 order-2 lg:order-1">
             <div className="bg-slate-50 dark:bg-gray-800 p-6 rounded-xl">
               <div className="flex space-x-4 items-start">
-                <div className="bg-serif-teal/10 p-3 rounded-full">
-                  <Mail className="h-6 w-6 text-serif-teal" />
+                <div className="bg-Stele-teal/10 p-3 rounded-full">
+                  <Mail className="h-6 w-6 text-Stele-teal" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-serif-blue dark:text-white mb-1">{t('emailUs')}</h3>
+                  <h3 className="text-xl font-semibold text-Stele-blue dark:text-white mb-1">{t('emailUs')}</h3>
                   <p className="text-gray-600 dark:text-gray-400 mb-2">{t('forInquiries')}</p>
-                  <a href="mailto:info@serifai.eu" className="text-serif-teal hover:underline">info@serifai.eu</a>
+                  <a href="mailto:info@Steleai.eu" className="text-Stele-teal hover:underline">info@Steleai.eu</a>
                 </div>
               </div>
             </div>
             
             <div className="bg-slate-50 dark:bg-gray-800 p-6 rounded-xl">
               <div className="flex space-x-4 items-start">
-                <div className="bg-serif-teal/10 p-3 rounded-full">
-                  <MapPin className="h-6 w-6 text-serif-teal" />
+                <div className="bg-Stele-teal/10 p-3 rounded-full">
+                  <MapPin className="h-6 w-6 text-Stele-teal" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-serif-blue dark:text-white mb-1">{t('ourLocation')}</h3>
+                  <h3 className="text-xl font-semibold text-Stele-blue dark:text-white mb-1">{t('ourLocation')}</h3>
                   <p className="text-gray-600 dark:text-gray-400">{t('basedIn')}</p>
                 </div>
               </div>
@@ -109,7 +109,7 @@ const ContactSection = () => {
               onSubmit={handleSubmit} 
               className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border dark:border-gray-700"
             >
-              <h3 className="text-xl font-semibold mb-6 text-serif-blue dark:text-white">{t('send')}</h3>
+              <h3 className="text-xl font-semibold mb-6 text-Stele-blue dark:text-white">{t('send')}</h3>
               
               <div className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -163,7 +163,7 @@ const ContactSection = () => {
                 <Button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="w-full bg-serif-blue hover:bg-serif-blue/90 dark:bg-serif-teal dark:hover:bg-serif-teal/90"
+                  className="w-full bg-Stele-blue hover:bg-Stele-blue/90 dark:bg-Stele-teal dark:hover:bg-Stele-teal/90"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center">

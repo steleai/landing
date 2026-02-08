@@ -21,7 +21,7 @@ export const translations = {
     takeOurSurvey: "Take our Survey",
     
     // About Section
-    aboutUs: "About Serif",
+    aboutUs: "About Stele",
     aboutDesc1: "We transform Italian public data into actionable insights.",
     aboutDesc2: "Our AI-powered platform provides government data intelligence through chatbots, visualization tools, and real-time analytics.",
     
@@ -36,7 +36,7 @@ export const translations = {
     policySimDesc: "Model potential outcomes of proposed policies with our simulation tools.",
     
     // Mission Section
-    missionTitle: "Serif's Mission",
+    missionTitle: "Stele's Mission",
     missionDesc1: "Driving better decisions with the best data enhancing Transparency Through Technology. Our mission is to make government data not just accessible, but truly useful through AI-powered analysis.",
     missionDesc2: "We believe that accurate, accessible government information is essential for a functioning democracy and informed citizenry.",
     
@@ -47,7 +47,7 @@ export const translations = {
     
     // Contact Section
     contactUs: "Contact Us",
-    contactDesc: "Have questions or want to learn more about Serif? Fill out the form below and we'll get back to you as soon as possible.",
+    contactDesc: "Have questions or want to learn more about Stele? Fill out the form below and we'll get back to you as soon as possible.",
     yourName: "Your Name",
     yourEmail: "Your Email",
     subject: "Subject",
@@ -74,7 +74,7 @@ export const translations = {
     backToTop: "Back to Top",
 
     // Goals
-    serifsGoals: "Serif's Goals",
+    StelesGoals: "Stele's Goals",
     nextStep: "The next step forward is one we'll take with you thanks to our features",
     aiChatbot: "AI Chatbot",
     customReports: "Custom Reports",
@@ -101,7 +101,7 @@ export const translations = {
     takeOurSurvey: "Compila il Nostro Sondaggio",
     
     // About Section
-    aboutUs: "Chi è Serif",
+    aboutUs: "Chi è Stele",
     aboutDesc1: "Trasformiamo i dati pubblici italiani in informazioni utili.",
     aboutDesc2: "La nostra piattaforma basata su IA fornisce intelligence sui dati governativi attraverso chatbot, strumenti di visualizzazione e analisi in tempo reale.",
     
@@ -116,7 +116,7 @@ export const translations = {
     policySimDesc: "Modellare i potenziali risultati delle politiche proposte con i nostri strumenti di simulazione.",
     
     // Mission Section
-    missionTitle: "Mission di Serif",
+    missionTitle: "Mission di Stele",
     missionDesc1: "Promuovere decisioni consapevoli grazie ai dati migliorando la trasparenza attraverso la tecnologia. La nostra missione è rendere i dati governativi non solo accessibili, ma anche realmente utili attraverso l'analisi fornita dall'intelligenza artificiale.",
     missionDesc2: "Crediamo che informazioni governative accurate e accessibili siano essenziali per una democrazia funzionante e per una cittadinanza informata.",
     
@@ -127,7 +127,7 @@ export const translations = {
     
     // Contact Section
     contactUs: "Contattaci",
-    contactDesc: "Hai domande o vuoi saperne di più su Serif? Compila il modulo qui sotto e ti risponderemo il prima possibile.",
+    contactDesc: "Hai domande o vuoi saperne di più su Stele? Compila il modulo qui sotto e ti risponderemo il prima possibile.",
     yourName: "Il Tuo Nome",
     yourEmail: "La Tua Email",
     subject: "Oggetto",
@@ -154,7 +154,7 @@ export const translations = {
     backToTop: "Torna in Cima",
     
     // Goals
-    serifsGoals: "Obiettivi di Serif",
+    StelesGoals: "Obiettivi di Stele",
     nextStep: "Il prossimo passo avanti lo faremo insieme, grazie alle nostre funzionalità",
     aiChatbot: "Chatbot",
     customReports: "Report Personalizzati",

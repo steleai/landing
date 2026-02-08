@@ -11,20 +11,20 @@ const HeroSection = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="space-y-6 md:space-y-8">
-            <div className="inline-flex items-center rounded-full px-3 py-1 text-sm bg-serif-teal/10 text-serif-teal dark:bg-serif-teal/20 dark:text-serif-teal animate-fade-in">
+            <div className="inline-flex items-center rounded-full px-3 py-1 text-sm bg-Stele-teal/10 text-Stele-teal dark:bg-Stele-teal/20 dark:text-Stele-teal animate-fade-in">
               <span className="mr-1">✨</span> {t('transformingData')}
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-serif-blue dark:text-white leading-tight animate-fade-in">
-              {t('heroTitle')} <span className="text-serif-teal">{t('heroTitleHighlight')}</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-Stele-blue dark:text-white leading-tight animate-fade-in">
+              {t('heroTitle')} <span className="text-Stele-teal">{t('heroTitleHighlight')}</span>
             </h1>
             <p className="text-lg text-gray-700 dark:text-gray-300 md:text-xl animate-fade-in">
               {t('heroDesc')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in">
-              <Button asChild size="lg" className="bg-serif-blue hover:bg-serif-blue/90 text-white">
+              <Button asChild size="lg" className="bg-Stele-blue hover:bg-Stele-blue/90 text-white">
                 <a href="#about">{t('learnMore')}</a>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-serif-teal text-serif-teal hover:bg-serif-teal/10 dark:border-serif-teal dark:text-serif-teal dark:hover:bg-serif-teal/20 dark:bg-gray-700/50">
+              <Button asChild variant="outline" size="lg" className="border-Stele-teal text-Stele-teal hover:bg-Stele-teal/10 dark:border-Stele-teal dark:text-Stele-teal dark:hover:bg-Stele-teal/20 dark:bg-gray-700/50">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSe87e569hyTGlgu5EsJzcgSbebtvBSSo3EmoAQm12WIaojcuA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer">
                   {t('takeOurSurvey')}
                 </a>
@@ -33,13 +33,17 @@ const HeroSection = () => {
           </div>
           <div className="hidden md:flex justify-center relative animate-float">
             <div className="w-72 h-72 lg:w-96 lg:h-96 relative">
-              <div className="absolute inset-0 rounded-full bg-serif-blue/5 dark:bg-serif-blue/10 animate-pulse"></div>
-              <div className="absolute inset-4 rounded-full bg-serif-blue/10 dark:bg-serif-blue/20"></div>
+              <div className="absolute inset-0 rounded-full bg-Stele-blue/5 dark:bg-Stele-blue/10 animate-pulse"></div>
+              <div className="absolute inset-4 rounded-full bg-Stele-blue/10 dark:bg-Stele-blue/20"></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <SerifLogo size={180} animated={true} className="text-serif-blue/80 dark:text-serif-blue/90" />
+                <SerifLogo
+                  size={320}
+                  variant="mark"
+                  className="drop-shadow-xl"
+                />
               </div>
               
-              {/* Floating elements with Serif's Goals */}
+              {/* Floating elements with Stele's Goals */}
               <div className="absolute -top-4 -right-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg animate-float">
                 <div className="text-sm font-bold dark:text-white">{t('aiChatbot')}</div>
               </div>
@@ -64,8 +68,8 @@ const HeroSection = () => {
       </div>
       
       {/* Background decorative elements */}
-      <div className="absolute top-40 left-10 w-20 h-20 bg-serif-teal/10 dark:bg-serif-teal/20 rounded-full -z-10"></div>
-      <div className="absolute bottom-20 right-10 w-32 h-32 bg-serif-orange/10 dark:bg-serif-orange/20 rounded-full -z-10"></div>
+      <div className="absolute top-40 left-10 w-20 h-20 bg-Stele-teal/10 dark:bg-Stele-teal/20 rounded-full -z-10"></div>
+      <div className="absolute bottom-20 right-10 w-32 h-32 bg-Stele-orange/10 dark:bg-Stele-orange/20 rounded-full -z-10"></div>
     </section>
   );
 };

@@ -44,8 +44,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex-shrink-0">
           <a href="#hero" className="flex items-center">
-            <SerifLogo size={46} className="mr-2" />
-            <span className="text-5xl font-bold text-serif-blue dark:text-white font-['Cormorant_SC']">Serif</span>
+            <SerifLogo size={90} variant="full" className="mr-2" />
           </a>
         </div>
         
@@ -56,7 +55,7 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-gray-700 dark:text-gray-300 hover:text-serif-blue dark:hover:text-white transition-colors duration-300 font-medium"
+                className="text-gray-700 dark:text-gray-300 hover:text-Stele-blue dark:hover:text-white transition-colors duration-300 font-medium"
               >
                 {link.name}
               </a>
@@ -66,7 +65,7 @@ const Navbar = () => {
         
         {/* Call to Action Button, Language Switcher, and Theme Toggle */}
         <div className="hidden md:flex items-center space-x-3">
-          <Button asChild className="bg-serif-teal hover:bg-serif-teal/90">
+          <Button asChild className="bg-Stele-teal hover:bg-Stele-teal/90">
             <a 
               href="https://docs.google.com/forms/d/e/1FAIpQLSe87e569hyTGlgu5EsJzcgSbebtvBSSo3EmoAQm12WIaojcuA/viewform?usp=sharing"
               target="_blank"
@@ -112,13 +111,13 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="block text-gray-700 dark:text-gray-300 hover:text-serif-blue dark:hover:text-white transition-colors duration-300 py-2 font-medium"
+                className="block text-gray-700 dark:text-gray-300 hover:text-Stele-blue dark:hover:text-white transition-colors duration-300 py-2 font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
               </a>
             ))}
-            <Button asChild className="w-full mt-2 bg-serif-teal hover:bg-serif-teal/90">
+            <Button asChild className="w-full mt-2 bg-Stele-teal hover:bg-Stele-teal/90">
               <a 
                 href="https://docs.google.com/forms/d/e/1FAIpQLSe87e569hyTGlgu5EsJzcgSbebtvBSSo3EmoAQm12WIaojcuA/viewform?usp=sharing" 
                 target="_blank"

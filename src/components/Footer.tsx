@@ -1,6 +1,5 @@
 
 import { useLanguage } from "@/contexts/LanguageContext";
-import SerifLogo from "./SerifLogo";
 import { FaInstagram, FaFacebook, FaReddit, FaLinkedin, FaTiktok, FaGithub } from "react-icons/fa";
 import SerifLogoFooter from "./SerifLogoFooter";
 
@@ -10,21 +9,19 @@ const Footer = () => {
   const { t } = useLanguage();
   
   return (
-    <footer className="bg-serif-blue text-white dark:bg-gray-900">
+    <footer className="bg-Stele-blue text-white dark:bg-gray-900">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center mb-4">
-              {/* <SerifLogo size={55} className="mr-2 text-white" /> */}
-              <SerifLogoFooter size={60} className="mr-2 text-white" />
-              <span className="text-4xl font-bold font-['Cormorant_SC']">Serif</span>
+              <SerifLogoFooter size={60} className="mr-2" />
             </div>
             <p className="text-white/80 mb-6 max-w-md">
               {t('footerDescription')}
             </p>
             <div className="flex space-x-4">
               <a 
-                href="https://www.instagram.com/ai_serif/"
+                href="https://www.instagram.com/ai_Stele/"
                 target="_blank"
                 className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
                 aria-label="Instagram"
@@ -40,7 +37,7 @@ const Footer = () => {
                 <FaFacebook size={20} />
               </a> */}
               <a
-                href="https://www.reddit.com/user/Serif_AI/"
+                href="https://www.reddit.com/user/Stele_AI/"
                 target="_blank"
                 className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
                 aria-label="Reddit"
@@ -48,7 +45,7 @@ const Footer = () => {
                 <FaReddit size={20} />
               </a>
               <a 
-                href="https://www.linkedin.com/company/serifai/"
+                href="https://www.linkedin.com/company/Steleai/"
                 target="_blank"
                 className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
                 aria-label="LinkedIn"
@@ -56,7 +53,7 @@ const Footer = () => {
                 <FaLinkedin size={20} />
               </a>
               <a 
-                href="https://www.github.com/serifai"
+                href="https://www.github.com/Steleai"
                 target="_blank"
                 className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
                 aria-label="GitHub"
@@ -120,7 +117,7 @@ const Footer = () => {
         
         <div className="border-t border-white/20 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-white/60 text-sm">
-            &copy; {currentYear} Serif AI. {t('allRights')}.
+            &copy; {currentYear} Stele AI. {t('allRights')}.
           </p>
           <p className="text-white/60 text-sm mt-2 md:mt-0">
             {t('madeWith')}

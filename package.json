@@ -2,7 +2,7 @@
   "name": "vite_react_shadcn_ts",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://serifai.eu",
+  "homepage": "https://Steleai.eu",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",

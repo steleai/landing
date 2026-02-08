@@ -42,7 +42,7 @@ const TeamSection = () => {
     <section id="team" className="section-padding bg-slate-50 dark:bg-gray-800">
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-6xl font-bold text-serif-blue dark:text-white mb-4">{t('aboutUsTeam')}</h2>
+          <h2 className="text-3xl md:text-6xl font-bold text-Stele-blue dark:text-white mb-4">{t('aboutUsTeam')}</h2>
           <p className="text-2xl text-gray-700 dark:text-gray-300">
             {t('dreamTeam')}
           </p>
@@ -59,8 +59,8 @@ const TeamSection = () => {
                 />
               </div>
               <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-1 text-serif-blue dark:text-white">{member.name}</h3>
-                <p className="text-serif-teal font-medium mb-3">{member.role}</p>
+                <h3 className="text-xl font-semibold mb-1 text-Stele-blue dark:text-white">{member.name}</h3>
+                <p className="text-Stele-teal font-medium mb-3">{member.role}</p>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">{member.bio}</p>
               </CardContent>
             </Card>

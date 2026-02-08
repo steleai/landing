@@ -63,7 +63,7 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				serif: {
+				Stele: {
 					blue: "#1A365D",
 					teal: "#38B2AC",
 					orange: "#ED8936"

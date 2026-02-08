@@ -20,7 +20,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'cormorant': ['"Cormorant SC"', 'serif'],
+				'cormorant': ['"Cormorant SC"', 'Stele'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -66,7 +66,7 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				serif: {
+				Stele: {
 					blue: "#1A365D",
 					teal: "#38B2AC",
 					orange: "#ED8936"
