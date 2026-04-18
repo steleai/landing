@@ -11,10 +11,10 @@ const DevelopersSection = () => {
     <section id="developers" className="section-padding bg-white dark:bg-gray-900">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start">
         <div className="lg:col-span-5" data-aos="fade-up">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-Stele-teal">
+          <p id="developers-label" className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-Stele-teal">
             {t('developersLabel')}
           </p>
-          <h2 className="text-3xl font-bold leading-tight text-Stele-blue dark:text-white md:text-5xl">
+          <h2 id="developers-title" className="text-3xl font-bold leading-tight text-Stele-blue dark:text-white md:text-5xl">
             {t('developersTitle')}
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300">

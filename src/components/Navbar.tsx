@@ -22,10 +22,11 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: t('navResearch'), href: '#research' },
-    { name: t('navProducts'), href: '#products' },
-    { name: t('navDevelopers'), href: '#developers' },
-    { name: t('navMissionTeam'), href: '#mission' }
+    { name: t('navResearch'), href: '#research-label' },
+    { name: t('navProducts'), href: '#products-label' },
+    { name: t('navDevelopers'), href: '#developers-label' },
+    { name: t('navMissionTeam'), href: '#mission-label' },
+    { name: t('navContact'), href: '#contact' }
   ];
 
   return (

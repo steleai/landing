@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Mail, Send, Github, Instagram, Linkedin } from 'lucide-react';
-import { FaReddit } from 'react-icons/fa';
+import { Mail, Send, Github, Instagram } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,8 +9,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const socialLinks = [
   { icon: Github, href: 'https://www.github.com/Steleai', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://www.linkedin.com/company/Steleai/', label: 'LinkedIn' },
-  { icon: Instagram, href: 'https://www.instagram.com/ai_Stele/', label: 'Instagram' }
+  // { icon: Linkedin, href: 'https://www.linkedin.com/company/Steleai/', label: 'LinkedIn' },
+  { icon: Instagram, href: 'https://www.instagram.com/stele_ai/', label: 'Instagram' }
 ];
 
 const ContactSection = () => {
@@ -158,7 +157,7 @@ const ContactSection = () => {
                     <social.icon className="h-5 w-5" />
                   </a>
                 ))}
-                <a
+                {/* <a
                   href="https://www.reddit.com/user/Stele_AI/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -166,7 +165,7 @@ const ContactSection = () => {
                   className="w-12 h-12 glass rounded-xl flex items-center justify-center text-muted-foreground hover:text-Stele-blue dark:hover:text-Stele-teal hover:border-Stele-blue/30 dark:hover:border-Stele-teal/30 transition-colors"
                 >
                   <FaReddit className="h-5 w-5" />
-                </a>
+                </a> */}
               </div>
             </div>
 

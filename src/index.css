@@ -88,6 +88,14 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
+  .dark body {
+    background-image:
+      linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+    background-size: 72px 72px;
+    background-attachment: fixed;
+  }
+
   html {
     scroll-behavior: smooth;
   }

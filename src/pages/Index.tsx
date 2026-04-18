@@ -13,7 +13,6 @@ import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
   useEffect(() => {
-    // Add scroll animations
     const handleScroll = () => {
       const elements = document.querySelectorAll('[data-aos]');
       elements.forEach((el) => {
@@ -27,41 +26,37 @@ const Index = () => {
       });
     };
 
-    // Fix navbar scroll behavior
-    const fixNavbarScrolling = () => {
-      const navLinks = document.querySelectorAll('a[href^="#"]');
-      
-      navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          const targetId = this.getAttribute('href');
-          if (!targetId) return;
-          
-          // Get the target element
-          const targetElement = document.querySelector(targetId);
-          if (!targetElement) return;
-          
-          // Calculate position with offset for fixed navbar
-          const navbarHeight = document.querySelector('nav')?.getBoundingClientRect().height || 0;
-          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementPosition - navbarHeight;
-          
-          // Smooth scroll to element
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        });
+    const handleAnchorClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const anchor = target.closest('a[href^="#"]') as HTMLAnchorElement | null;
+      if (!anchor) return;
+
+      const targetId = anchor.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+
+      const targetElement = document.querySelector(targetId);
+      if (!targetElement) return;
+
+      event.preventDefault();
+
+      const navbarHeight = document.querySelector('nav')?.getBoundingClientRect().height || 0;
+      const extraOffset = 12;
+      const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = Math.max(0, elementPosition - navbarHeight - extraOffset);
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
       });
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Call once on load
-    fixNavbarScrolling(); // Fix navbar scrolling
-    
+    document.addEventListener('click', handleAnchorClick);
+    handleScroll();
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', handleAnchorClick);
     };
   }, []);
 

@@ -6,6 +6,7 @@ export const translations = {
     navProducts: 'Products',
     navDevelopers: 'Development',
     navMissionTeam: 'Mission & Team',
+    navContact: 'Contact',
     ctaTrySprintAct: 'Try SprintAct',
 
     heroEyebrow: 'AI-native legal technology for Italy',
@@ -94,6 +95,7 @@ export const translations = {
     navProducts: 'Prodotti',
     navDevelopers: 'Sviluppo',
     navMissionTeam: 'Mission e Team',
+    navContact: 'Contatti',
     ctaTrySprintAct: 'Prova SprintAct',
 
     heroEyebrow: 'Legal tech AI-native per il mercato italiano',
@@ -154,7 +156,6 @@ export const translations = {
       "La nostra missione e favorire un sistema democratico dell'informazione, in cui la conoscenza legale sia verificabile, utile e aperta alla partecipazione informata.",
 
     aboutUsTeam: 'Team',
-    dreamTeam: 'The dream team',
     trustMe: "Trust me I'm an Engineer",
 
     contactTitle: 'Contattaci',
@@ -162,9 +163,9 @@ export const translations = {
     contactName: 'Nome',
     contactNamePlaceholder: 'Il tuo nome',
     contactEmail: 'Email',
-    contactEmailPlaceholder: 'nome@esempio.com',
+    contactEmailPlaceholder: 'nome@dominio.com',
     contactMessage: 'Messaggio',
-    contactMessagePlaceholder: 'Descrivi il tuo contesto, caso d uso o idea di collaborazione...',
+    contactMessagePlaceholder: 'Descrivi il tuo caso d uso o idea di collaborazione...',
     contactSend: 'Invia messaggio',
     contactSending: 'Invio in corso...',
     contactDirect: 'Contatto diretto',
@@ -174,7 +175,7 @@ export const translations = {
     messageSent: 'Messaggio inviato!',
     messageSentDesc: 'Abbiamo ricevuto il tuo messaggio e ti risponderemo a breve.',
     messageFailed: 'Invio non riuscito',
-    messageFailedDesc: 'Si e verificato un problema durante l invio. Riprova.',
+    messageFailedDesc: 'Si e verificato un problema, riprova.',
 
     footerTagline: 'Stele - azienda AI e legal data.',
     footerPrivacy: 'Privacy Policy',
