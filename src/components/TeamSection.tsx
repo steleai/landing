@@ -1,10 +1,8 @@
 
-import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const TeamSection = () => {
-  const [showMeme, setShowMeme] = useState(false);
   const { t } = useLanguage();
   
   const teamMembers = [
@@ -62,27 +60,6 @@ const TeamSection = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-        
-        <div className="mt-16 text-center">
-          <div 
-            className="inline-block relative cursor-pointer"
-            onMouseEnter={() => setShowMeme(true)}
-            onMouseLeave={() => setShowMeme(false)}
-          >
-            <p className="text-lg font-semibold text-gray-700 dark:text-gray-200 italic">
-              "{t('trustMe')}"
-            </p>
-            {showMeme && (
-              <div className="absolute left-1/2 transform -translate-x-1/2 top-full mt-4 z-50 w-80 shadow-xl rounded-lg overflow-hidden transition-all duration-300 ease-in-out">
-                <img 
-                  src="/lovable-uploads/trust-me-i-am-an-engineer.jpeg" 
-                  alt="Trust me I'm an Engineer" 
-                  className="w-full h-auto"
-                />
-              </div>
-            )}
-          </div>
         </div>
       </div>
     </section>
