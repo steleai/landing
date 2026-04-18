@@ -1,30 +1,28 @@
-
-import { useLanguage } from "@/contexts/LanguageContext";
-import RocketLogo from "./RocketLogo";
+import { useLanguage } from '@/contexts/LanguageContext';
+import RocketLogo from './RocketLogo';
 
 const MissionSection = () => {
   const { t } = useLanguage();
-  
+
   return (
-    <section id="mission" className="section-padding bg-slate-50 dark:bg-gray-800 pt-0">
-      <div className="container mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 id="mission-title" className="text-3xl md:text-6xl font-bold text-Stele-blue dark:text-white mb-4 py-[30px]">{t('missionTitle')}</h2>
+    <section id="mission" className="section-padding bg-slate-50 dark:bg-gray-800/70">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-12 max-w-3xl" data-aos="fade-up">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-Stele-teal">{t('missionLabel')}</p>
+          <h2 id="mission-title" className="text-3xl font-bold leading-tight text-Stele-blue dark:text-white md:text-5xl">
+            {t('missionTitle')}
+          </h2>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          <div className="order-2 md:order-1">
-            <p className="text-2xl text-gray-700 dark:text-gray-300 mb-6">
-              {t('missionDesc1')}
-            </p>
-            <p className="text-2xl text-gray-700 dark:text-gray-300">
-              {t('missionDesc2')}
-            </p>
+
+        <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2" data-aos="fade-up" data-aos-delay={100}>
+          <div>
+            <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">{t('missionDesc1')}</p>
+            <p className="mt-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300">{t('missionDesc2')}</p>
           </div>
-          
-          <div className="order-1 md:order-2 flex justify-center">
-            <div className="relative h-64 w-64 rounded-full overflow-hidden bg-gradient-to-br from-Stele-blue to-Stele-teal p-10 flex items-center justify-center">
-              <RocketLogo size={80} animated={true} className="text-white" />
+
+          <div className="flex justify-center md:justify-end">
+            <div className="relative flex h-64 w-64 items-center justify-center rounded-full border border-Stele-blue/20 bg-gradient-to-br from-Stele-blue to-Stele-teal p-10 shadow-xl dark:border-Stele-teal/40">
+              <RocketLogo size={86} animated className="text-white" />
             </div>
           </div>
         </div>

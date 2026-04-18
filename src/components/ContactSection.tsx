@@ -1,187 +1,178 @@
-
-import { useEffect, useState, useRef } from 'react';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/components/ui/use-toast";
-import { Mail, MapPin, Send } from "lucide-react";
+import { useEffect, useRef, useState } from 'react';
+import { Mail, Send, Github, Instagram, Linkedin } from 'lucide-react';
+import { FaReddit } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
-import { useLanguage } from "@/contexts/LanguageContext";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/components/ui/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
+
+const socialLinks = [
+  { icon: Github, href: 'https://www.github.com/Steleai', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/company/Steleai/', label: 'LinkedIn' },
+  { icon: Instagram, href: 'https://www.instagram.com/ai_Stele/', label: 'Instagram' }
+];
 
 const ContactSection = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
-  // Initialize EmailJS
   useEffect(() => {
     emailjs.init({
-      publicKey: "tTgQA6D5gMLCdBaDC",
+      publicKey: 'tTgQA6D5gMLCdBaDC'
     });
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
     setIsSubmitting(true);
-    
-    // Send email using EmailJS
-    if (formRef.current) {
-      emailjs.sendForm('service_nxdvcml', 'contact_form', formRef.current)
-        .then(() => {
-          toast({
-            title: t('messageSent'),
-            description: "We've received your message and will respond shortly.",
-          });
-          
-          // Reset form
-          setFormData({
-            name: '',
-            email: '',
-            message: ''
-          });
-          setIsSubmitting(false);
-        })
-        .catch((error) => {
-          console.error('FAILED...', error);
-          toast({
-            title: t('messageFailed'),
-            description: "There was a problem sending your message. Please try again.",
-            variant: "destructive"
-          });
-          setIsSubmitting(false);
-        });
+
+    if (!formRef.current) {
+      setIsSubmitting(false);
+      return;
     }
+
+    emailjs
+      .sendForm('service_nxdvcml', 'contact_form', formRef.current)
+      .then(() => {
+        toast({
+          title: t('messageSent'),
+          description: t('messageSentDesc')
+        });
+        formRef.current?.reset();
+        setIsSubmitting(false);
+      })
+      .catch((error) => {
+        console.error('FAILED...', error);
+        toast({
+          title: t('messageFailed'),
+          description: t('messageFailedDesc'),
+          variant: 'destructive'
+        });
+        setIsSubmitting(false);
+      });
   };
 
   return (
-    <section id="contact" className="section-padding bg-white dark:bg-gray-900">
-      <div className="container mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-6xl font-bold text-Stele-blue dark:text-white mb-4">{t('contactUs')}</h2>
-          <p className="text-2xl text-gray-700 dark:text-gray-300">
-            {t('contactDesc')}
-          </p>
+    <section id="contact" className="section-padding relative bg-slate-50 dark:bg-gray-900">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-14" data-aos="fade-up">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-Stele-blue dark:text-white">{t('contactTitle')}</h2>
+          <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">{t('contactDesc')}</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
-          <div className="lg:col-span-2 space-y-6 order-2 lg:order-1">
-            <div className="bg-slate-50 dark:bg-gray-800 p-6 rounded-xl">
-              <div className="flex space-x-4 items-start">
-                <div className="bg-Stele-teal/10 p-3 rounded-full">
-                  <Mail className="h-6 w-6 text-Stele-teal" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-Stele-blue dark:text-white mb-1">{t('emailUs')}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-2">{t('forInquiries')}</p>
-                  <a href="mailto:info@Steleai.eu" className="text-Stele-teal hover:underline">info@Steleai.eu</a>
-                </div>
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
+          <form
+            ref={formRef}
+            id="contact-form"
+            onSubmit={handleSubmit}
+            className="glass rounded-2xl p-6 sm:p-8 space-y-6"
+            data-aos="fade-up"
+          >
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="name" className="text-sm text-muted-foreground mb-2 block">
+                  {t('contactName')}
+                </label>
+                <Input
+                  id="name"
+                  name="name"
+                  required
+                  maxLength={100}
+                  placeholder={t('contactNamePlaceholder')}
+                  className="bg-secondary/70 border-border"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="text-sm text-muted-foreground mb-2 block">
+                  {t('contactEmail')}
+                </label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  maxLength={255}
+                  placeholder={t('contactEmailPlaceholder')}
+                  className="bg-secondary/70 border-border"
+                />
               </div>
             </div>
-            
-            <div className="bg-slate-50 dark:bg-gray-800 p-6 rounded-xl">
-              <div className="flex space-x-4 items-start">
-                <div className="bg-Stele-teal/10 p-3 rounded-full">
-                  <MapPin className="h-6 w-6 text-Stele-teal" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-Stele-blue dark:text-white mb-1">{t('ourLocation')}</h3>
-                  <p className="text-gray-600 dark:text-gray-400">{t('basedIn')}</p>
-                </div>
-              </div>
+
+            <div>
+              <label htmlFor="message" className="text-sm text-muted-foreground mb-2 block">
+                {t('contactMessage')}
+              </label>
+              <Textarea
+                id="message"
+                name="message"
+                required
+                maxLength={1000}
+                rows={5}
+                placeholder={t('contactMessagePlaceholder')}
+                className="bg-secondary/70 border-border resize-none"
+              />
             </div>
-          </div>
-          
-          <div className="lg:col-span-3 order-1 lg:order-2">
-            <form 
-              ref={formRef}
-              id="contact-form"
-              onSubmit={handleSubmit} 
-              className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border dark:border-gray-700"
+
+            <Button
+              type="submit"
+              className="rounded-full px-8 w-full sm:w-auto bg-Stele-blue hover:bg-Stele-blue/90 text-white"
+              disabled={isSubmitting}
             >
-              <h3 className="text-xl font-semibold mb-6 text-Stele-blue dark:text-white">{t('send')}</h3>
-              
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      {t('yourName')}
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full dark:bg-gray-700 dark:border-gray-600"
-                      placeholder={t('yourName')}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      {t('yourEmail')}
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full dark:bg-gray-700 dark:border-gray-600"
-                      placeholder="john@example.com"
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    {t('message')}
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    className="w-full dark:bg-gray-700 dark:border-gray-600"
-                    placeholder={`${t('message')}...`}
-                  />
-                </div>
-                
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="w-full bg-Stele-blue hover:bg-Stele-blue/90 dark:bg-Stele-teal dark:hover:bg-Stele-teal/90"
+              {isSubmitting ? t('contactSending') : (
+                <>
+                  {t('contactSend')}
+                  <Send className="ml-2 h-4 w-4" />
+                </>
+              )}
+            </Button>
+          </form>
+
+          <div className="flex flex-col justify-center space-y-8" data-aos="fade-up" data-aos-delay={100}>
+            <div>
+              <h3 className="text-xl font-semibold mb-3 text-Stele-blue dark:text-white">{t('contactDirect')}</h3>
+              <a
+                href="mailto:info@stele.it.com"
+                className="inline-flex items-center gap-3 text-Stele-blue dark:text-Stele-teal hover:underline text-lg"
+              >
+                <Mail className="h-5 w-5" />
+                info@stele.it.com
+              </a>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4 text-Stele-blue dark:text-white">{t('contactFollow')}</h3>
+              <div className="flex gap-4">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="w-12 h-12 glass rounded-xl flex items-center justify-center text-muted-foreground hover:text-Stele-blue dark:hover:text-Stele-teal hover:border-Stele-blue/30 dark:hover:border-Stele-teal/30 transition-colors"
+                  >
+                    <social.icon className="h-5 w-5" />
+                  </a>
+                ))}
+                <a
+                  href="https://www.reddit.com/user/Stele_AI/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Reddit"
+                  className="w-12 h-12 glass rounded-xl flex items-center justify-center text-muted-foreground hover:text-Stele-blue dark:hover:text-Stele-teal hover:border-Stele-blue/30 dark:hover:border-Stele-teal/30 transition-colors"
                 >
-                  {isSubmitting ? (
-                    <span className="flex items-center">
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Sending...
-                    </span>
-                  ) : (
-                    <span className="flex items-center">
-                      <Send className="mr-2 h-4 w-4" />
-                      {t('send')}
-                    </span>
-                  )}
-                </Button>
+                  <FaReddit className="h-5 w-5" />
+                </a>
               </div>
-            </form>
+            </div>
+
+            <div className="glass rounded-2xl p-6">
+              <p className="text-sm text-muted-foreground leading-relaxed">{t('contactNote')}</p>
+            </div>
           </div>
         </div>
       </div>

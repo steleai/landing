@@ -1,75 +1,60 @@
-
 import { Button } from '@/components/ui/button';
-import SerifLogo from './SerifLogo';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const HeroSection = () => {
   const { t } = useLanguage();
-  
+
   return (
-    <section id="hero" className="relative pt-28 pb-20 md:py-36 overflow-hidden bg-gradient-to-br from-white to-blue-50 dark:from-gray-900 dark:to-gray-800">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="space-y-6 md:space-y-8">
-            <div className="inline-flex items-center rounded-full px-3 py-1 text-sm bg-Stele-teal/10 text-Stele-teal dark:bg-Stele-teal/20 dark:text-Stele-teal animate-fade-in">
-              <span className="mr-1">✨</span> {t('transformingData')}
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-Stele-blue dark:text-white leading-tight animate-fade-in">
-              {t('heroTitle')} <span className="text-Stele-teal">{t('heroTitleHighlight')}</span>
-            </h1>
-            <p className="text-lg text-gray-700 dark:text-gray-300 md:text-xl animate-fade-in">
-              {t('heroDesc')}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in">
-              <Button asChild size="lg" className="bg-Stele-blue hover:bg-Stele-blue/90 text-white">
-                <a href="#about">{t('learnMore')}</a>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-Stele-teal text-Stele-teal hover:bg-Stele-teal/10 dark:border-Stele-teal dark:text-Stele-teal dark:hover:bg-Stele-teal/20 dark:bg-gray-700/50">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe87e569hyTGlgu5EsJzcgSbebtvBSSo3EmoAQm12WIaojcuA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer">
-                  {t('takeOurSurvey')}
-                </a>
-              </Button>
-            </div>
-          </div>
-          <div className="hidden md:flex justify-center relative animate-float">
-            <div className="w-72 h-72 lg:w-96 lg:h-96 relative">
-              <div className="absolute inset-0 rounded-full bg-Stele-blue/5 dark:bg-Stele-blue/10 animate-pulse"></div>
-              <div className="absolute inset-4 rounded-full bg-Stele-blue/10 dark:bg-Stele-blue/20"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <SerifLogo
-                  size={320}
-                  variant="mark"
-                  className="drop-shadow-xl"
-                />
-              </div>
-              
-              {/* Floating elements with Stele's Goals */}
-              <div className="absolute -top-4 -right-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg animate-float">
-                <div className="text-sm font-bold dark:text-white">{t('aiChatbot')}</div>
-              </div>
-              <div className="absolute -bottom-4 -left-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg animate-float" style={{
-                animationDelay: '1s'
-              }}>
-                <div className="text-sm font-bold dark:text-white">{t('customReports')}</div>
-              </div>
-              <div className="absolute top-1/2 -right-8 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg animate-float" style={{
-                animationDelay: '2s'
-              }}>
-                <div className="text-sm font-bold dark:text-white">{t('factChecking')}</div>
-              </div>
-              <div className="absolute bottom-1/3 -left-8 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg animate-float" style={{
-                animationDelay: '1.5s'
-              }}>
-                <div className="text-sm font-bold dark:text-white">{t('policySim')}</div>
-              </div>
-            </div>
+    <section
+      id="hero"
+      className="relative isolate min-h-[calc(100svh-72px)] overflow-hidden bg-[radial-gradient(circle_at_15%_20%,rgba(56,178,172,0.18),transparent_46%),radial-gradient(circle_at_80%_0%,rgba(26,54,93,0.2),transparent_42%),linear-gradient(160deg,#f8fbff_0%,#eef4ff_52%,#e8f7f5_100%)] dark:bg-[radial-gradient(circle_at_20%_20%,rgba(56,178,172,0.22),transparent_46%),radial-gradient(circle_at_82%_0%,rgba(56,178,172,0.18),transparent_40%),linear-gradient(160deg,#050a14_0%,#0c1323_52%,#071a1a_100%)]"
+    >
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(26,54,93,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(26,54,93,0.05)_1px,transparent_1px)] bg-[size:72px_72px] dark:bg-[linear-gradient(to_right,rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.06)_1px,transparent_1px)]" />
+
+      <div className="relative mx-auto flex min-h-[calc(100svh-72px)] w-full max-w-6xl flex-col justify-center px-4 pb-16 pt-28 md:px-8 lg:px-12">
+        <p className="mb-4 inline-flex w-fit items-center rounded-full border border-Stele-blue/20 bg-white/65 px-4 py-1 text-xs font-semibold tracking-[0.14em] text-Stele-blue uppercase backdrop-blur-sm dark:border-Stele-teal/35 dark:bg-gray-900/60 dark:text-Stele-teal animate-fade-in">
+          {t('heroEyebrow')}
+        </p>
+
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_240px] lg:items-center">
+          <h1
+            className="max-w-4xl text-balance text-4xl font-bold leading-tight text-Stele-blue dark:text-white sm:text-5xl md:text-6xl lg:text-7xl animate-fade-in"
+            style={{ animationDelay: '80ms' }}
+          >
+            {t('heroTitle')} <span className="text-Stele-teal">{t('heroTitleHighlight')}</span>
+          </h1>
+
+          <div className="hidden lg:flex justify-end animate-fade-in" style={{ animationDelay: '120ms' }}>
+            <img
+              src="/stele-logo-icon-vertical-transparent.png"
+              alt="Stele logo icon"
+              className="h-80 w-auto opacity-95"
+              loading="eager"
+              decoding="async"
+            />
           </div>
         </div>
+
+        <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-gray-700 dark:text-gray-300 md:text-xl animate-fade-in" style={{ animationDelay: '160ms' }}>
+          {t('heroDesc')}
+        </p>
+
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row animate-fade-in" style={{ animationDelay: '240ms' }}>
+          <Button asChild size="lg" className="rounded-full bg-Stele-blue px-8 text-white hover:bg-Stele-blue/90">
+            <a href="#products">{t('heroPrimaryCta')}</a>
+          </Button>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="rounded-full border-Stele-teal/60 bg-white/80 px-8 text-Stele-blue hover:bg-Stele-teal/10 dark:border-Stele-teal dark:bg-transparent dark:text-Stele-teal dark:hover:bg-Stele-teal/10"
+          >
+            <a href="https://sprintact.eu" target="_blank" rel="noopener noreferrer">
+              {t('heroSecondaryCta')}
+            </a>
+          </Button>
+        </div>
       </div>
-      
-      {/* Background decorative elements */}
-      <div className="absolute top-40 left-10 w-20 h-20 bg-Stele-teal/10 dark:bg-Stele-teal/20 rounded-full -z-10"></div>
-      <div className="absolute bottom-20 right-10 w-32 h-32 bg-Stele-orange/10 dark:bg-Stele-orange/20 rounded-full -z-10"></div>
     </section>
   );
 };
