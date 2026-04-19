@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
 export const translations = {
   en: {
@@ -195,8 +195,41 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+const detectBrowserLanguage = (): Language => {
+  if (typeof window === 'undefined') {
+    return 'it';
+  }
+
+  const browserLanguages = navigator.languages?.length ? navigator.languages : [navigator.language];
+
+  for (const lang of browserLanguages) {
+    const normalized = lang.toLowerCase();
+    if (normalized.startsWith('it')) return 'it';
+    if (normalized.startsWith('en')) return 'en';
+  }
+
+  return 'it';
+};
+
+const getInitialLanguage = (): Language => {
+  if (typeof window === 'undefined') {
+    return 'it';
+  }
+
+  const savedLanguage = localStorage.getItem('language');
+  if (savedLanguage === 'it' || savedLanguage === 'en') {
+    return savedLanguage;
+  }
+
+  return detectBrowserLanguage();
+};
+
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>(() => getInitialLanguage());
+
+  useEffect(() => {
+    localStorage.setItem('language', language);
+  }, [language]);
 
   const t = (key: TranslationKey): string => {
     return translations[language][key] || translations.en[key];
