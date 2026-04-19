@@ -1,73 +1,107 @@
-# Welcome to your Lovable project
+# Stele Landing Page
 
-## Project info
+Landing page ufficiale di **Stele**, startup legal tech AI-native focalizzata sul mercato italiano.
 
-**URL**: https://lovable.dev/projects/03800dec-16cd-4229-8466-b0d5c90d8260
+Il sito presenta la società in ottica company-first e introduce **SprintAct** come prima linea di prodotto per la ricerca legale (dominio dedicato: `sprintact.eu`).
 
-## How can I edit this code?
+## Posizionamento
 
-There are several ways of editing your application.
+Stele costruisce strumenti AI affidabili per il settore legale italiano, con focus su:
 
-**Use Lovable**
+- accessibilità dei dati istituzionali e normativi
+- verificabilità delle fonti
+- utilità operativa per professionisti, aziende e istituzioni
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/03800dec-16cd-4229-8466-b0d5c90d8260) and start prompting.
+## Struttura della pagina
 
-Changes made via Lovable will be committed automatically to this repo.
+La landing è organizzata in sezioni narrative:
 
-**Use your preferred IDE**
+- `Hero` (company statement + CTA SprintAct)
+- `Research` (paper, case study, note metodologiche)
+- `Products` (SprintAct: preciso, veloce, versatile)
+- `Developers / GitHub` (materiali aperti per developer)
+- `Mission`
+- `Team`
+- `Contact`
+- `Footer`
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Localizzazione (IT/EN)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Le traduzioni sono centralizzate in:
 
-Follow these steps:
+- `src/contexts/LanguageContext.tsx`
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Comportamento lingua:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. Se esiste una lingua salvata in `localStorage`, viene usata quella.
+2. Altrimenti viene letta la lingua del browser (`navigator.languages` / `navigator.language`).
+3. Supporto attuale: `it`, `en`.
+4. Fallback di default: **italiano**.
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Tema e UX
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+- Supporto **light/dark mode**
+- Navbar fissa con smooth-scroll alle sezioni
+- Pattern grafico esteso su tutta la pagina in dark mode
+- Bottone "back to top" in basso a sinistra
+
+## Stack tecnico
+
+- React 18 + TypeScript
+- Vite
+- Tailwind CSS
+- shadcn/ui (componenti UI)
+- EmailJS (form contatti)
+
+## Sviluppo locale
+
+Prerequisiti consigliati:
+
+- Node.js 18+
+- npm
+
+Installazione e avvio:
+
+```bash
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Build di produzione:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run build
+```
 
-**Use GitHub Codespaces**
+Preview build locale:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+npm run preview
+```
 
-## What technologies are used for this project?
+## Deploy su GitHub Pages
 
-This project is built with:
+Questo progetto è configurato per deploy via `gh-pages`.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Comando unico:
 
-## How can I deploy this project?
+```bash
+npm run deploy
+```
 
-Simply open [Lovable](https://lovable.dev/projects/03800dec-16cd-4229-8466-b0d5c90d8260) and click on Share -> Publish.
+Flusso:
 
-## Can I connect a custom domain to my Lovable project?
+1. `predeploy` esegue `npm run build`
+2. `deploy` pubblica `dist` sul branch `gh-pages`
 
-Yes, you can!
+## Contatti e social
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- Form contatti integrato con EmailJS in `src/components/ContactSection.tsx`
+- Alcuni social possono essere temporaneamente nascosti/commentati in attesa di aggiornamento contenuti
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Dove aggiornare i contenuti
+
+- Copy e traduzioni: `src/contexts/LanguageContext.tsx`
+- Composizione pagina: `src/pages/Index.tsx`
+- Sezioni: `src/components/*Section.tsx`
+- Navbar: `src/components/Navbar.tsx`
