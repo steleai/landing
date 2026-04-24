@@ -1,0 +1,18 @@
+name: Add Opened Issue To Org Project
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  add-opened-issue-to-project:
+    uses: steleai/.github/.github/workflows/add-opened-issue-to-project.yml@main
+    with:
+      issue_node_id: ${{ github.event.issue.node_id }}
+      issue_url: ${{ github.event.issue.html_url }}
+      source_repository: ${{ github.repository }}
+      issue_number: ${{ github.event.issue.number }}
+      project_number: ${{ vars.STELEAI_PROJECT_NUMBER }}
+    secrets:
+      app_client_id: ${{ secrets.STELEAI_PROJECT_APP_CLIENT_ID }}
+      app_private_key: ${{ secrets.STELEAI_PROJECT_APP_PRIVATE_KEY }}
