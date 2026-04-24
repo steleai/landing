@@ -6,6 +6,7 @@ on:
 
 jobs:
   add-opened-issue-to-project:
+    if: contains(fromJSON('["OWNER","MEMBER"]'), github.event.issue.author_association)
     uses: steleai/.github/.github/workflows/add-opened-issue-to-project.yml@main
     with:
       issue_node_id: ${{ github.event.issue.node_id }}
