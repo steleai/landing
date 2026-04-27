@@ -13,7 +13,6 @@ jobs:
       issue_url: ${{ github.event.issue.html_url }}
       source_repository: ${{ github.repository }}
       issue_number: ${{ github.event.issue.number }}
-      project_number: ${{ vars.STELEAI_PROJECT_NUMBER }}
     secrets:
       app_client_id: ${{ secrets.STELEAI_PROJECT_APP_CLIENT_ID }}
       app_private_key: ${{ secrets.STELEAI_PROJECT_APP_PRIVATE_KEY }}
