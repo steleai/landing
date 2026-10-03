@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Mail, Send, Github, Instagram, Linkedin } from 'lucide-react';
+import { Mail, Send, Github, Linkedin } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,7 +10,6 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const socialLinks = [
   { icon: Github, href: 'https://www.github.com/Steleai', label: 'GitHub' },
   { icon: Linkedin, href: 'https://www.linkedin.com/company/steleai/', label: 'LinkedIn' },
-  { icon: Instagram, href: 'https://www.instagram.com/stele_ai/', label: 'Instagram' }
 ];
 
 const ContactSection = () => {

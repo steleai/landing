@@ -85,7 +85,7 @@ export const translations = {
     messageFailed: 'Message failed to send',
     messageFailedDesc: 'There was a problem sending your message. Please try again.',
 
-    footerTagline: 'Stele - an AI and legal data company.',
+    footerTagline: 'Stele S.r.l',
     footerPrivacy: 'Privacy Policy',
     footerCookie: 'Cookie Policy',
     allRights: 'All Rights Reserved'
@@ -177,7 +177,7 @@ export const translations = {
     messageFailed: 'Invio non riuscito',
     messageFailedDesc: 'Si è verificato un problema. Riprova.',
 
-    footerTagline: 'Stele - an AI and legal data company.',
+    footerTagline: 'Stele S.r.l',
     footerPrivacy: 'Privacy Policy',
     footerCookie: 'Cookie Policy',
     allRights: 'Tutti i diritti riservati'
