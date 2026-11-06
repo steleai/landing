@@ -9,7 +9,7 @@ Versione 0.1, 6 novembre 2026. Stato: implementazione su `feat/hiring-page`, rac
 - `public/hiring/privacy.provisional.it.pdf`: informativa originale provvisoria, due pagine, stessa provenienza. Non è una versione legalmente approvata.
 - Decisioni finali dell’utente prevalgono sulle bozze: CV obbligatorio (LinkedIn non lo sostituisce), scadenza da definire (il 20 novembre 2026 nel PDF è superato), lavoro principalmente remoto, future opportunità facoltative fino a 24 mesi, notifiche a `info@stele.it.com`, IT/EN, GCS privato e Cloud Run.
 
-I PDF restano immutati per tracciabilità; il testo visibile segnala la natura provvisoria e la scadenza aggiornata. Prima del lancio sostituire insieme PDF e contenuti web. Nessun contenuto provvisorio deve diventare definitivo semplicemente impostando una variabile.
+I PDF restano immutati per tracciabilità; il testo pubblico presenta la candidatura senza etichette di lavorazione e omette la scadenza non definita. Prima del lancio sostituire insieme PDF e contenuti web. Nessun contenuto provvisorio deve diventare definitivo semplicemente impostando una variabile.
 
 ## 2. Obiettivi e perimetro
 
@@ -25,7 +25,7 @@ Gerarchia: introduzione Stele; titolo ruolo; remoto e impegno; condizioni econom
 
 Contenuti dalla bozza: collaborazione professionale autonoma, circa un giorno/settimana iniziale; confronto con founder; analisi workflow, test e valutazioni AI/ricerca, benchmark e contenuti editoriali; esperienza forense e attitudine imprenditoriale. Work for Equity senza compenso monetario iniziale; 5% su quattro anni, cliff sei mesi, maturazione mensile; eventuali due punti ulteriori non automatici; diluizione, rischio, base di calcolo e condizioni affidate agli accordi. Possibile Legal Product Lead senza poteri amministrativi. Eventuale pilota formalizzato prima dell’inizio, distinto dalle prove di selezione.
 
-Il testo inglese dell’annuncio è una traduzione di lavoro; i PDF disponibili sono italiani e il link lo dichiara. L’informativa HTML completa IT/EN e il PDF ufficiale sono un blocco al lancio: la pagina privacy attuale è un avviso provvisorio con link alla fonte, non una sostituzione dell’informativa completa.
+Il testo inglese dell’annuncio è una traduzione di lavoro; i PDF disponibili sono italiani e il link lo dichiara. L’informativa HTML completa IT/EN e il PDF ufficiale sono un blocco al lancio: la pagina privacy attuale trascrive il documento italiano fornito; la revisione legale e la traduzione inglese restano necessarie prima dell’apertura.
 
 ### Modulo
 
@@ -137,3 +137,7 @@ Checklist obbligatoria prima del rilascio:
 PR iniziale: pagina bilingue, documenti provvisori, percorsi statici, servizio Cloud Run disattivato, test e runbook. PR successiva di attivazione: testi ufficiali IT/EN, versioni, durata, infrastruttura effettiva, prove staging e monitoraggio. Nessun merge/deploy implicito.
 
 Punti aperti bloccanti: annuncio ufficiale; informativa completa e basi giuridiche; durata selezione; data di chiusura o scelta esplicita di annuncio aperto; progetto GCP/billing/regione; identità recruiter e responsabile privacy; fornitore SMTP e mittente verificato; Cloud Armor/edge antiabuso; definizioni scanner aggiornate; verifica container e test cloud. Migliorie successive: drag/drop con rimozione file, portale recruiter, ricevuta candidato, nuovi ruoli. Queste migliorie non sono presentate come già implementate.
+
+## Presentazione pubblica aggiornata
+
+Il titolo è Legal Product Specialist, senza slogan aggiunti. Testo italiano della candidatura riportato nelle sezioni del documento originale, condizioni equity comprese. Griglia max-w-6xl, titoli blu, accenti verde acqua e pulsanti arrotondati riprendono la landing. Nessuna etichetta di lavorazione nel testo pubblico; i blocchi di attivazione restano documentati internamente.
