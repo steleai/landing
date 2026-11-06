@@ -40,6 +40,7 @@ export default function Hiring() {
   const [reference, setReference] = useState('');
   const key = useRef(crypto.randomUUID());
   const api = import.meta.env.VITE_HIRING_API_URL;
+  const isLocalPreview = import.meta.env.DEV && !api;
   useEffect(() => {
     document.title = 'Legal Product Specialist | Stele';
     document.documentElement.lang = language;
@@ -124,7 +125,7 @@ export default function Hiring() {
         <section id="application" className="glass scroll-mt-28 rounded-2xl p-6 sm:p-8 lg:col-span-5" aria-labelledby="apply-title">
           <h2 id="apply-title" className="text-2xl font-semibold text-Stele-blue dark:text-white">{it ? 'Invia la tua candidatura' : 'Submit your application'}</h2>
           <p className="mt-2 text-base leading-relaxed text-gray-600 dark:text-gray-300">{it ? 'Allega il tuo CV. Se vuoi, aggiungi il profilo LinkedIn e una breve motivazione.' : 'Attach your CV. You can also add your LinkedIn profile and a brief motivation.'}</p>
-          {!open && <p role="status" className="mt-4 border-l-2 border-Stele-teal pl-3 text-xs leading-5 text-gray-600 dark:text-gray-300">{c.unavailable}</p>}
+          {!open && !isLocalPreview && <p role="status" className="mt-4 border-l-2 border-Stele-teal pl-3 text-xs leading-5 text-gray-600 dark:text-gray-300">{c.unavailable}</p>}
           {reference ? <p role="status" className="mt-6 break-all text-sm leading-6 text-Stele-blue dark:text-white">{c.success} <strong>{reference}</strong></p> : <form onSubmit={submit} onChange={() => { key.current = crypto.randomUUID(); }} className="mt-6">
             <fieldset disabled={busy} className="grid gap-4">
               <label className={field}>{c.name}<Input className="border-border bg-secondary/70" name="name" required maxLength={120} autoComplete="name" /></label>
