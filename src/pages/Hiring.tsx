@@ -68,8 +68,8 @@ export default function Hiring() {
     } catch { setStatus(c.error); } finally { setBusy(false); }
   }
   const it = language === 'it';
-  const field = 'grid gap-2 text-sm text-muted-foreground';
-  const heading = 'text-lg font-semibold text-Stele-blue dark:text-white';
+  const field = 'grid gap-2 text-sm font-medium text-muted-foreground';
+  const heading = 'text-xl font-semibold text-Stele-blue dark:text-white';
   const points = it ? [
     ['Comprendere il lavoro legale', 'Tradurre i processi di lavoro degli avvocati in esigenze e requisiti di prodotto.'],
     ['Valutare SprintAct', 'Testare ricerca giuridica e funzionalità AI, individuando criticità e fonti mancanti.'],
@@ -85,12 +85,12 @@ export default function Hiring() {
       <div className="relative mx-auto max-w-6xl pb-12 pt-36 md:pb-14">
         <a href="/" className="mb-7 inline-flex items-center gap-2 text-xs font-medium text-gray-600 transition-colors hover:text-Stele-blue dark:text-gray-300"><span aria-hidden="true">←</span> Stele</a>
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-Stele-teal">{it ? 'Lavora con noi' : 'Careers'}</p>
-        <h1 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight text-Stele-blue dark:text-white sm:text-4xl">Legal Product Specialist</h1>
-        <p className="mt-4 max-w-xl text-base leading-relaxed text-gray-700 dark:text-gray-300">{it ? 'Cerchiamo un professionista del settore legale per contribuire allo sviluppo di SprintAct, a fianco dei founder.' : 'We are looking for a legal professional to help develop SprintAct, working directly with the founders.'}</p>
-        <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-Stele-blue dark:text-gray-200">
+        <h1 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight text-Stele-blue dark:text-white sm:text-[2.5rem]">Legal Product Specialist</h1>
+        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-gray-700 dark:text-gray-300">{it ? 'Cerchiamo un professionista del settore legale per contribuire allo sviluppo di SprintAct, a fianco dei founder.' : 'We are looking for a legal professional to help develop SprintAct, working directly with the founders.'}</p>
+        <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-base font-medium text-Stele-blue dark:text-gray-200">
           <span className="inline-flex items-center gap-2"><MapPin aria-hidden="true" className="h-4 w-4 text-Stele-teal" />{c.remote}</span>
           <span className="inline-flex items-center gap-2"><Clock3 aria-hidden="true" className="h-4 w-4 text-Stele-teal" />{c.time}</span>
-          <span className="inline-flex items-center gap-2"><BriefcaseBusiness aria-hidden="true" className="h-4 w-4 text-Stele-teal" />{it ? 'Work for Equity · senza compenso monetario' : 'Work for Equity · no cash compensation'}</span>
+          <span className="inline-flex items-center gap-2"><BriefcaseBusiness aria-hidden="true" className="h-4 w-4 text-Stele-teal" />Work for Equity</span>
         </div>
         <a href="#application" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-Stele-blue underline-offset-4 hover:underline dark:text-white">{c.apply}<ArrowDown aria-hidden="true" className="h-4 w-4" /></a>
       </div>
@@ -100,30 +100,30 @@ export default function Hiring() {
         <div className="space-y-9 lg:col-span-7">
           <section aria-labelledby="contribution-title">
             <h2 id="contribution-title" className={heading}>{it ? 'Il tuo contributo' : 'Your contribution'}</h2>
-            <div className="mt-6 space-y-5">{points.map(([title, description]) => <div key={title} className="border-l border-Stele-blue/20 pl-5 dark:border-gray-700"><h3 className="text-sm font-semibold text-Stele-blue dark:text-white">{title}</h3><p className="mt-1 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{description}</p></div>)}</div>
+            <div className="mt-6 space-y-5">{points.map(([title, description]) => <div key={title} className="border-l border-Stele-blue/20 pl-5 dark:border-gray-700"><h3 className="text-base font-semibold text-Stele-blue dark:text-white">{title}</h3><p className="mt-1 text-base leading-relaxed text-gray-600 dark:text-gray-300">{description}</p></div>)}</div>
           </section>
           <section><h2 className={heading}>{it ? 'Chi cerchiamo' : 'Who we are looking for'}</h2>
-            <p className="mt-3 text-sm leading-7 text-gray-600 dark:text-gray-300">{it ? 'Esperienza concreta nella professione forense, capacità di ragionamento e interesse per legal tech e intelligenza artificiale. Cerchiamo una persona pragmatica e affidabile, disponibile a far crescere nel tempo il proprio contributo al progetto.' : 'Practical experience in legal practice, sound reasoning and an interest in legal tech and AI. We are looking for a pragmatic, reliable person willing to grow their contribution to the project over time.'}</p>
+            <p className="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-300">{it ? 'Esperienza concreta nella professione forense, capacità di ragionamento e interesse per legal tech e intelligenza artificiale. Cerchiamo una persona pragmatica e affidabile, disponibile a far crescere nel tempo il proprio contributo al progetto.' : 'Practical experience in legal practice, sound reasoning and an interest in legal tech and AI. We are looking for a pragmatic, reliable person willing to grow their contribution to the project over time.'}</p>
           </section>
           <section className="rounded-2xl border border-Stele-blue/10 bg-slate-50 p-5 dark:border-gray-700 dark:bg-slate-900/60 sm:p-6">
             <h2 className={heading}>{it ? 'La collaborazione' : 'The collaboration'}</h2>
-            <p className="mt-3 text-sm leading-6 text-gray-700 dark:text-gray-300">{it ? 'Collaborazione professionale autonoma, inizialmente di circa un giorno alla settimana, remunerata attraverso equity, senza compenso monetario.' : 'Independent professional collaboration, initially around one day per week, compensated through equity, without cash compensation.'}</p>
+            <p className="mt-3 text-base leading-relaxed text-gray-700 dark:text-gray-300">{it ? 'Collaborazione professionale autonoma, inizialmente di circa un giorno alla settimana, remunerata attraverso equity, senza compenso monetario.' : 'Independent professional collaboration, initially around one day per week, compensated through equity, without cash compensation.'}</p>
             <div className="mt-5 grid grid-cols-3 gap-3 border-y border-Stele-blue/10 py-4 dark:border-gray-700">
               {[[ '5%', it ? 'Partecipazione di base' : 'Base participation'], [it ? '4 anni' : '4 years', 'Vesting'], [it ? '6 mesi' : '6 months', it ? 'Cliff iniziale' : 'Initial cliff']].map(([value, label]) => <div key={label}><p className="text-xl font-semibold text-Stele-blue dark:text-white">{value}</p><p className="mt-1 text-xs leading-5 text-gray-600 dark:text-gray-400">{label}</p></div>)}
             </div>
-            <p className="mt-4 text-xs leading-6 text-gray-600 dark:text-gray-300">{it ? 'La partecipazione matura progressivamente. Ulteriori 2 punti percentuali potranno essere concordati e non sono automatici. Le quote sono soggette a diluizione; valore futuro e rendimento non sono garantiti.' : 'The participation vests progressively. An additional 2 percentage points may be agreed and are not automatic. Shares are subject to dilution; future value and returns are not guaranteed.'}</p>
+            <p className="mt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{it ? 'La partecipazione matura progressivamente. Ulteriori 2 punti percentuali potranno essere concordati e non sono automatici. Le quote sono soggette a diluizione; valore futuro e rendimento non sono garantiti.' : 'The participation vests progressively. An additional 2 percentage points may be agreed and are not automatic. Shares are subject to dilution; future value and returns are not guaranteed.'}</p>
             <details className="group mt-3 text-sm"><summary className="cursor-pointer py-2 font-medium text-Stele-blue underline-offset-4 hover:underline dark:text-white">{it ? 'Condizioni della proposta' : 'Proposal terms'}</summary>
-              <div className="mt-2 space-y-3 text-xs leading-6 text-gray-600 dark:text-gray-300">{it ? role.conditions.map(text => <p key={text}>{text}</p>) : <p>{c.offerText}</p>}<a className="inline-flex items-center gap-2 font-medium text-Stele-blue underline dark:text-white" href="/hiring/legal-product-specialist.provisional.it.pdf">{c.pdf}<ArrowUpRight aria-hidden="true" className="h-3 w-3" /></a></div>
+              <div className="mt-2 space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{it ? role.conditions.map(text => <p key={text}>{text}</p>) : <p>{c.offerText}</p>}<a className="inline-flex items-center gap-2 font-medium text-Stele-blue underline dark:text-white" href="/hiring/legal-product-specialist.provisional.it.pdf">{c.pdf}<ArrowUpRight aria-hidden="true" className="h-3 w-3" /></a></div>
             </details>
           </section>
           <section><h2 className={heading}>{it ? 'Come funziona la selezione' : 'The selection process'}</h2>
-            <ol className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600 dark:text-gray-300">{(it ? ['Valutazione del CV', 'Colloqui conoscitivi', 'Eventuali prove pratiche'] : ['CV review', 'Introductory interviews', 'Possible practical assessments']).map((text, i) => <li key={text} className="flex items-center gap-2"><span className="text-xs font-semibold text-Stele-teal">0{i + 1}</span>{text}</li>)}</ol>
+            <ol className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-base text-gray-600 dark:text-gray-300">{(it ? ['Valutazione del CV', 'Colloqui conoscitivi', 'Eventuali prove pratiche'] : ['CV review', 'Introductory interviews', 'Possible practical assessments']).map((text, i) => <li key={text} className="flex items-center gap-2"><span className="text-xs font-semibold text-Stele-teal">0{i + 1}</span>{text}</li>)}</ol>
             <a className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-Stele-blue underline underline-offset-4 dark:text-white" href="/hiring/legal-product-specialist.provisional.it.pdf">{it ? 'Leggi la descrizione completa' : 'Read the full description'}<ArrowUpRight aria-hidden="true" className="h-4 w-4" /></a>
           </section>
         </div>
         <section id="application" className="glass scroll-mt-28 rounded-2xl p-6 sm:p-8 lg:col-span-5" aria-labelledby="apply-title">
-          <h2 id="apply-title" className="text-xl font-semibold text-Stele-blue dark:text-white">{it ? 'Invia la tua candidatura' : 'Submit your application'}</h2>
-          <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-300">{it ? 'Allega il tuo CV. Se vuoi, aggiungi il profilo LinkedIn e una breve motivazione.' : 'Attach your CV. You can also add your LinkedIn profile and a brief motivation.'}</p>
+          <h2 id="apply-title" className="text-2xl font-semibold text-Stele-blue dark:text-white">{it ? 'Invia la tua candidatura' : 'Submit your application'}</h2>
+          <p className="mt-2 text-base leading-relaxed text-gray-600 dark:text-gray-300">{it ? 'Allega il tuo CV. Se vuoi, aggiungi il profilo LinkedIn e una breve motivazione.' : 'Attach your CV. You can also add your LinkedIn profile and a brief motivation.'}</p>
           {!open && <p role="status" className="mt-4 border-l-2 border-Stele-teal pl-3 text-xs leading-5 text-gray-600 dark:text-gray-300">{c.unavailable}</p>}
           {reference ? <p role="status" className="mt-6 break-all text-sm leading-6 text-Stele-blue dark:text-white">{c.success} <strong>{reference}</strong></p> : <form onSubmit={submit} onChange={() => { key.current = crypto.randomUUID(); }} className="mt-6">
             <fieldset disabled={busy} className="grid gap-4">
