@@ -140,4 +140,6 @@ Punti aperti bloccanti: annuncio ufficiale; informativa completa e basi giuridic
 
 ## Presentazione pubblica aggiornata
 
-Il titolo è Legal Product Specialist, senza slogan aggiunti. Testo italiano della candidatura riportato nelle sezioni del documento originale, condizioni equity comprese. Griglia max-w-6xl, titoli blu, accenti verde acqua e pulsanti arrotondati riprendono la landing. Nessuna etichetta di lavorazione nel testo pubblico; i blocchi di attivazione restano documentati internamente.
+La pagina presenta una sintesi del ruolo, non la trascrizione del PDF. La hero riprende fondo sfumato e griglia della landing, con titolo contenuto, remoto, impegno e assenza di compenso monetario espliciti. Seguono tre contributi, un breve profilo, un riquadro Work for Equity e il processo di selezione. Modulo affiancato su desktop e sotto il contenuto su mobile; stile campi e pannello ripreso da ContactSection. I dettagli societari restano espandibili e nel PDF originale. Nessuna nuova promessa o requisito aggiunto. Il modulo è compilabile per revisione UI, ma il pulsante e il server impediscono invii quando la raccolta è chiusa.
+
+Riferimenti di ricerca UX: [Linear Careers](https://linear.app/careers) e [PostHog Careers](https://posthog.com/careers), per gerarchia tra sintesi ruolo e approfondimenti; identità visiva derivata dal sito Stele. Verifica visiva desktop 1440 px e mobile 390 px, assenza di overflow orizzontale, allineamento hero/contenuto e apertura/chiusura dettagli controllati. Screenshot di revisione conservato fuori dai file tracciati.
