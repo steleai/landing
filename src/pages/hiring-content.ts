@@ -6,12 +6,12 @@ export const italianRole = {
     'Cerchiamo una persona disponibile a far crescere il proprio contributo insieme alla società, sia in termini di tempo dedicato sia di responsabilità. L’impegno iniziale rappresenta un punto di partenza, gli eventuali incrementi saranno concordati tra le parti, insieme agli obiettivi e alle relative condizioni economiche.',
   ],
   tasks: [
-    'Analizzare i processi di lavoro degli avvocati e tradurli in esigenze e requisiti di prodotto;',
-    'Testare SprintAct e fornire segnalazioni e suggerimenti strutturati;',
-    'Valutare le funzionalità di ricerca giuridica e quelle assistite dall’intelligenza artificiale;',
-    'Individuare criticità nei risultati, fonti mancanti e passaggi da migliorare;',
-    'Creare casi giuridici realistici e benchmark per valutare il prodotto;',
-    'Contribuire alle decisioni sulle funzionalità che riguardano il lavoro dei professionisti legali;',
+    'Analizzare i processi di lavoro degli avvocati e tradurli in esigenze e requisiti di prodotto.',
+    'Testare SprintAct e fornire segnalazioni e suggerimenti strutturati.',
+    'Valutare le funzionalità di ricerca giuridica e quelle assistite dall’intelligenza artificiale.',
+    'Individuare criticità nei risultati, fonti mancanti e passaggi da migliorare.',
+    'Creare casi giuridici realistici e benchmark per valutare il prodotto.',
+    'Contribuire alle decisioni sulle funzionalità che riguardano il lavoro dei professionisti legali.',
     'Redigere contenuti editoriali e divulgativi di carattere giuridico.',
   ],
   autonomy: [
@@ -26,7 +26,7 @@ export const italianRole = {
   terms: [
     ['Partecipazione di base', '5%, da maturare progressivamente e non acquisito immediatamente.'],
     ['Vesting', 'Maturazione nell’arco di 4 anni.'],
-    ['Cliff iniziale', '6 mesi prima della prima maturazione; il relativo funzionamento sarà precisato nell’accordo.'],
+    ['Cliff iniziale', '6 mesi prima della prima maturazione. Il relativo funzionamento sarà precisato nell’accordo.'],
     ['Maturazione successiva', 'Mensile, secondo il piano concordato.'],
     ['Incremento eventuale', 'Ulteriori 2 punti percentuali, da concordare in relazione all’ampliamento dell’incarico e del contributo.'],
     ['Obiettivo complessivo potenziale', '7%, secondo la base di calcolo e la data di riferimento definite negli accordi.'],
