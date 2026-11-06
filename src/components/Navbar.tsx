@@ -8,7 +8,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +26,8 @@ const Navbar = () => {
     { name: t('navProducts'), href: '#products-label' },
     { name: t('navDevelopers'), href: '#developers-label' },
     { name: t('navMissionTeam'), href: '#mission-label' },
-    { name: t('navContact'), href: '#contact' }
+    { name: t('navContact'), href: '#contact' },
+    { name: language === 'it' ? 'Lavora con noi' : 'Careers', href: '/lavora-con-noi/' }
   ];
 
   return (
@@ -38,7 +39,7 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between gap-4">
-        <a href="#hero" className="flex items-center shrink-0" aria-label="Stele homepage">
+        <a href="/#hero" className="flex items-center shrink-0" aria-label="Stele homepage">
           <SerifLogo size={88} variant="full" className="mr-2" />
         </a>
 
@@ -47,7 +48,7 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <a
                 key={link.name}
-                href={link.href}
+                href={link.href.startsWith('#') ? `/${link.href}` : link.href}
                 className="text-sm font-medium tracking-wide text-gray-700 dark:text-gray-300 hover:text-Stele-blue dark:hover:text-white transition-colors duration-300"
               >
                 {link.name}
@@ -56,7 +57,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden lg:flex items-center gap-2">
           <Button asChild className="bg-Stele-blue hover:bg-Stele-blue/90 text-white rounded-full px-5">
             <a href="https://sprintact.eu" target="_blank" rel="noopener noreferrer">
               {t('ctaTrySprintAct')}
@@ -66,7 +67,7 @@ const Navbar = () => {
           <ThemeToggle />
         </div>
 
-        <div className="md:hidden flex items-center gap-2 ml-auto">
+        <div className="lg:hidden flex items-center gap-2 ml-auto">
           <LanguageSwitcher />
           <ThemeToggle />
           <button
@@ -93,12 +94,12 @@ const Navbar = () => {
       </div>
 
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-gray-200 dark:border-gray-800 shadow-lg animate-fade-in">
+        <div className="lg:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-gray-200 dark:border-gray-800 shadow-lg animate-fade-in">
           <div className="px-4 py-4 space-y-3">
             {navLinks.map((link) => (
               <a
                 key={link.name}
-                href={link.href}
+                href={link.href.startsWith('#') ? `/${link.href}` : link.href}
                 className="block text-gray-700 dark:text-gray-300 hover:text-Stele-blue dark:hover:text-white transition-colors duration-300 py-2 font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >

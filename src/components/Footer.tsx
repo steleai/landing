@@ -3,7 +3,7 @@ import SerifLogoFooter from './SerifLogoFooter';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <footer id="footer" className="border-t border-border bg-background/95 py-10 backdrop-blur-sm dark:bg-gray-950/90">
@@ -15,6 +15,7 @@ const Footer = () => {
           </div>
 
           <div className="flex items-center gap-6">
+            <a className="text-sm text-muted-foreground hover:text-foreground" href="/lavora-con-noi/">{language === 'it' ? 'Lavora con noi' : 'Careers'}</a>
             <a
               href="https://www.iubenda.com/privacy-policy/94489167"
               target="_blank"
