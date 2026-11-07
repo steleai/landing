@@ -8,8 +8,8 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
+    "build": "vite build && node scripts/static-routes.mjs",
+    "build:dev": "vite build --mode development && node scripts/static-routes.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
