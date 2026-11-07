@@ -32,7 +32,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow,padding] duration-300 ${
         isScrolled
           ? 'bg-white/90 dark:bg-gray-950/90 backdrop-blur-xl shadow-sm border-b border-gray-200/70 dark:border-gray-800/80 py-3'
           : 'bg-transparent py-5'
@@ -40,16 +40,16 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 flex items-center justify-between gap-4">
         <a href="/#hero" className="flex items-center shrink-0" aria-label="Stele homepage">
-          <SerifLogo size={88} variant="full" className="mr-2" />
+          <SerifLogo size={88} variant="full" className="mr-2 max-h-14 sm:max-h-[88px]" />
         </a>
 
-        <div className="hidden lg:flex items-center justify-center flex-1">
+        <div className="hidden xl:flex items-center justify-center flex-1">
           <div className="flex items-center gap-8">
             {navLinks.map((link) => (
               <a
-                key={link.name}
+                key={link.href}
                 href={link.href.startsWith('#') ? `/${link.href}` : link.href}
-                className="text-sm font-medium tracking-wide text-gray-700 dark:text-gray-300 hover:text-Stele-blue dark:hover:text-white transition-colors duration-300"
+                className="whitespace-nowrap text-sm font-medium tracking-wide text-gray-700 dark:text-gray-300 hover:text-Stele-blue dark:hover:text-white transition-colors duration-300"
               >
                 {link.name}
               </a>
@@ -57,8 +57,8 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="hidden lg:flex items-center gap-2">
-          <Button asChild className="bg-Stele-blue hover:bg-Stele-blue/90 text-white rounded-full px-5">
+        <div className="hidden xl:flex shrink-0 items-center gap-2">
+          <Button asChild className="w-40 bg-Stele-blue hover:bg-Stele-blue/90 text-white rounded-full px-5">
             <a href="https://sprintact.eu" target="_blank" rel="noopener noreferrer">
               {t('ctaTrySprintAct')}
             </a>
@@ -67,7 +67,7 @@ const Navbar = () => {
           <ThemeToggle />
         </div>
 
-        <div className="lg:hidden flex items-center gap-2 ml-auto">
+        <div className="xl:hidden flex shrink-0 items-center gap-2 ml-auto">
           <LanguageSwitcher />
           <ThemeToggle />
           <button
@@ -94,11 +94,11 @@ const Navbar = () => {
       </div>
 
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-gray-200 dark:border-gray-800 shadow-lg animate-fade-in">
+        <div className="xl:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-gray-200 dark:border-gray-800 shadow-lg animate-fade-in">
           <div className="px-4 py-4 space-y-3">
             {navLinks.map((link) => (
               <a
-                key={link.name}
+                key={link.href}
                 href={link.href.startsWith('#') ? `/${link.href}` : link.href}
                 className="block text-gray-700 dark:text-gray-300 hover:text-Stele-blue dark:hover:text-white transition-colors duration-300 py-2 font-medium"
                 onClick={() => setMobileMenuOpen(false)}

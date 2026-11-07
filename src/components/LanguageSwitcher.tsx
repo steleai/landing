@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown, Languages } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 const LanguageSwitcher = () => {
   const { language, setLanguage } = useLanguage();
@@ -20,14 +20,15 @@ const LanguageSwitcher = () => {
   ];
 
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false}>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
           size="sm"
-          className="h-8 gap-1 text-gray-700 dark:text-gray-300"
+          aria-label={language === 'it' ? 'Cambia lingua' : 'Change language'}
+          className="h-10 w-16 shrink-0 gap-1 px-2 text-gray-700 dark:text-gray-300 md:w-32 md:px-3"
         >
-          <span>{languages.find(lang => lang.code === language)?.flag}</span>
+          <span aria-hidden="true">{languages.find(lang => lang.code === language)?.flag}</span>
           <span className="hidden md:inline-block">{language === "en" ? "English" : "Italiano"}</span>
           <ChevronDown className="h-4 w-4" />
         </Button>
