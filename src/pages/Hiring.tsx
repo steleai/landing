@@ -5,6 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, ArrowUpRight, BriefcaseBusiness, Clock3, MapPin } from 'lucide-react';
 import { Input } from '@/components/ui/input';
+import { createUuid } from '@/lib/uuid';
 import { italianRole as role, englishProposalConditions } from './hiring-content';
 
 const copy = {
@@ -38,7 +39,7 @@ export default function Hiring() {
   const [status, setStatus] = useState('');
   const [busy, setBusy] = useState(false);
   const [reference, setReference] = useState('');
-  const key = useRef(crypto.randomUUID());
+  const key = useRef<string | null>(null);
   const api = import.meta.env.VITE_HIRING_API_URL;
   const isLocalPreview = import.meta.env.DEV && !api;
   useEffect(() => {
@@ -61,6 +62,7 @@ export default function Hiring() {
     form.set('privacyVersion', 'candidate-privacy-v1');
     setBusy(true); setStatus('');
     try {
+      key.current ??= createUuid();
       const result = await fetch(`${api}/v1/applications`, { method: 'POST', headers: { 'Idempotency-Key': key.current }, body: form });
       if (!result.ok) throw new Error('submission');
       const data = await result.json();
@@ -126,7 +128,7 @@ export default function Hiring() {
           <h2 id="apply-title" className="text-2xl font-semibold text-Stele-blue dark:text-white">{it ? 'Invia la tua candidatura' : 'Submit your application'}</h2>
           <p className="mt-2 text-base leading-relaxed text-gray-600 dark:text-gray-300">{it ? 'Allega il tuo CV. Se vuoi, aggiungi il profilo LinkedIn e una breve motivazione.' : 'Attach your CV. You can also add your LinkedIn profile and a brief motivation.'}</p>
           {!open && !isLocalPreview && <p role="status" className="mt-4 border-l-2 border-Stele-teal pl-3 text-xs leading-5 text-gray-600 dark:text-gray-300">{c.unavailable}</p>}
-          {reference ? <p role="status" className="mt-6 break-all text-sm leading-6 text-Stele-blue dark:text-white">{c.success} <strong>{reference}</strong></p> : <form onSubmit={submit} onChange={() => { key.current = crypto.randomUUID(); }} className="mt-6">
+          {reference ? <p role="status" className="mt-6 break-all text-sm leading-6 text-Stele-blue dark:text-white">{c.success} <strong>{reference}</strong></p> : <form onSubmit={submit} onChange={() => { key.current = null; }} className="mt-6">
             <fieldset disabled={busy} className="grid gap-4">
               <label className={field}>{c.name}<Input className="border-border bg-secondary/70" name="name" required maxLength={120} autoComplete="name" /></label>
               <label className={field}>{c.email}<Input className="border-border bg-secondary/70" name="email" type="email" required maxLength={254} autoComplete="email" /></label>
