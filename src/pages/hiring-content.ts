@@ -52,3 +52,12 @@ export const italianRole = {
     'Le prove di selezione saranno distinte dagli eventuali incarichi operativi della collaborazione pilota.',
   ],
 };
+
+// Keep the same paragraphs and scope as italianRole.conditions.
+export const englishProposalConditions = [
+  'Any additional equity is not automatic. A separate agreement will set out its conditions, arrangements and vesting schedule.',
+  'Individual agreements and the necessary corporate acts will define the instrument used, the basis for calculating the percentages, the rights attached to the participation and the consequences of ending the collaboration. Unvested equity will not be acquired, in accordance with the plan’s terms.',
+  'Shares will be subject to dilution resulting from subsequent corporate transactions. The stated percentages therefore do not represent a guaranteed minimum participation after future capital increases.',
+  'Equity carries financial risk. Its future value, the ability to sell it and any return are not guaranteed.',
+  'As Stele grows and resources become available, a cash compensation component may also be agreed. This vacancy describes a collaboration proposal and does not constitute an allocation of shares that has already taken place.',
+];

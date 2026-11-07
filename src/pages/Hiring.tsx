@@ -5,7 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, ArrowUpRight, BriefcaseBusiness, Clock3, MapPin } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { italianRole as role } from './hiring-content';
+import { italianRole as role, englishProposalConditions } from './hiring-content';
 
 const copy = {
   it: {
@@ -13,7 +13,7 @@ const copy = {
     remote: 'Principalmente da remoto', time: 'Circa un giorno alla settimana', equity: 'Collaborazione professionale autonoma · Impegno inizialmente parziale · Work for Equity',
     responsibilities: 'Il tuo contributo', tasks: ['Tradurre i processi di lavoro degli avvocati in requisiti di prodotto.', 'Testare SprintAct, valutare ricerca giuridica e funzionalità AI, individuare criticità e fonti mancanti.', 'Creare casi realistici e benchmark e contribuire alle decisioni di prodotto e ai contenuti giuridici.'],
     profile: 'Chi cerchiamo', profileText: 'Esperienza concreta nella professione forense, capacità di ragionamento, curiosità e interesse per legal tech. Lavorerai direttamente con i founder, con autonomia professionale e disponibilità a far crescere il tuo contributo nel tempo.',
-    offer: 'La proposta, con trasparenza', offerText: '5% indicativo, maturato in 4 anni con cliff iniziale di 6 mesi e successiva maturazione mensile. Eventuali ulteriori 2 punti percentuali richiedono un accordo separato: non sono automatici. Base di calcolo, diritti, cessazione e piano saranno definiti negli accordi. Le quote sono soggette a diluizione. Valore, liquidità e rendimento non sono garantiti. Una futura componente monetaria potrà essere concordata con la crescita della società. Nessuna quota è già assegnata.',
+    offer: 'La proposta, con trasparenza',
     growth: 'Possibile evoluzione verso Legal Product Lead, concordando impegno, responsabilità e condizioni economiche. Il ruolo non attribuisce cariche amministrative o poteri societari.',
     selection: 'Come ci conosceremo', selectionText: 'Valutazione del CV, colloqui ed eventuali prove pratiche. Una possibile collaborazione pilota avrà attività, durata e condizioni economiche formalizzate prima dell’avvio, separatamente dalle prove di selezione. Selezione aperta senza discriminazioni su caratteristiche personali non pertinenti.',
     pdf: 'Descrizione della collaborazione (PDF)', apply: 'Candidati', name: 'Nome e cognome', email: 'Email', linkedin: 'LinkedIn (facoltativo, consigliato)', motivation: 'Breve motivazione (facoltativa)', cv: 'CV obbligatorio · PDF, massimo 5 MB', privacy: 'Ho letto l’informativa candidati', future: 'Acconsento alla conservazione del mio profilo per opportunità future, fino a 24 mesi dalla candidatura. Posso revocare il consenso in qualsiasi momento. Il rifiuto non influisce sulla selezione attuale.',
@@ -24,7 +24,7 @@ const copy = {
     remote: 'Mainly remote', time: 'Approximately one day a week', equity: 'Independent professional collaboration · Work for Equity · No initial cash compensation',
     responsibilities: 'Your contribution', tasks: ['Translate lawyers’ workflows into product requirements.', 'Test SprintAct, evaluate legal research and AI features, identify issues and missing sources.', 'Create realistic cases and benchmarks and contribute to product decisions and legal editorial content.'],
     profile: 'Who we are looking for', profileText: 'Practical experience in legal practice, sound reasoning, curiosity and an interest in legal technology. Work directly with the founders, with professional independence and a willingness to grow your contribution over time.',
-    offer: 'A transparent proposal', offerText: 'An indicative 5%, vesting over 4 years with an initial 6-month cliff and subsequent monthly vesting. A potential additional 2 percentage points requires a separate agreement and is not automatic. Calculation basis, rights, termination and vesting details will be defined in agreements. Shares are subject to dilution. Future value, liquidity and returns are not guaranteed. Future cash compensation may be agreed as the company grows. No shares have already been awarded.',
+    offer: 'A transparent proposal',
     growth: 'Potential progression to Legal Product Lead, with time commitment, responsibilities and financial terms agreed separately. This title confers no corporate management position or authority.',
     selection: 'The selection process', selectionText: 'CV review, interviews and possible practical assessments. Any pilot collaboration will have its scope, duration and financial terms agreed in writing before it begins, separately from selection assessments. Selection is open without discrimination based on irrelevant personal characteristics.',
     pdf: 'Collaboration description (Italian PDF)', apply: 'Apply', name: 'Full name', email: 'Email', linkedin: 'LinkedIn (optional, recommended)', motivation: 'Brief motivation (optional)', cv: 'CV required · PDF, up to 5 MB', privacy: 'I have read the candidate privacy notice', future: 'I consent to my profile being retained for future opportunities for up to 24 months from this application. I may withdraw consent at any time. Declining does not affect this selection.', unavailable: 'The application form is currently unavailable.', send: 'Submit application', sending: 'Submitting…', success: 'Application received. Keep this reference:', error: 'Submission failed. Please retry. If the issue persists contact info@stele.it.com.', invalid: 'Choose a valid PDF up to 5 MB.',
@@ -99,6 +99,7 @@ export default function Hiring() {
     <section className="section-padding bg-white dark:bg-gray-900">
       <div className="mx-auto grid max-w-6xl items-start gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="space-y-9 lg:col-span-7">
+          <a className="inline-flex items-center gap-2 text-sm font-medium text-Stele-blue underline underline-offset-4 dark:text-white" href="/hiring/legal-product-specialist.provisional.it.pdf">{it ? 'Leggi la descrizione completa' : 'Read the full description'}<ArrowUpRight aria-hidden="true" className="h-4 w-4" /></a>
           <section aria-labelledby="contribution-title">
             <h2 id="contribution-title" className={heading}>{it ? 'Il tuo contributo' : 'Your contribution'}</h2>
             <div className="mt-6 space-y-5">{points.map(([title, description]) => <div key={title} className="border-l border-Stele-blue/20 pl-5 dark:border-gray-700"><h3 className="text-base font-semibold text-Stele-blue dark:text-white">{title}</h3><p className="mt-1 text-base leading-relaxed text-gray-600 dark:text-gray-300">{description}</p></div>)}</div>
@@ -114,12 +115,11 @@ export default function Hiring() {
             </div>
             <p className="mt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{it ? 'La partecipazione matura progressivamente. Ulteriori 2 punti percentuali potranno essere concordati e non sono automatici. Le quote sono soggette a diluizione. Valore futuro e rendimento non sono garantiti.' : 'The participation vests progressively. An additional 2 percentage points may be agreed and are not automatic. Shares are subject to dilution. Future value and returns are not guaranteed.'}</p>
             <details className="group mt-3 text-sm"><summary className="cursor-pointer py-2 font-medium text-Stele-blue underline-offset-4 hover:underline dark:text-white">{it ? 'Condizioni della proposta' : 'Proposal terms'}</summary>
-              <div className="mt-2 space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{it ? role.conditions.map(text => <p key={text}>{text}</p>) : <p>{c.offerText}</p>}<a className="inline-flex items-center gap-2 font-medium text-Stele-blue underline dark:text-white" href="/hiring/legal-product-specialist.provisional.it.pdf">{c.pdf}<ArrowUpRight aria-hidden="true" className="h-3 w-3" /></a></div>
+              <div className="mt-2 space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{(it ? role.conditions : englishProposalConditions).map(text => <p key={text}>{text}</p>)}<a className="inline-flex items-center gap-2 font-medium text-Stele-blue underline dark:text-white" href="/hiring/legal-product-specialist.provisional.it.pdf">{c.pdf}<ArrowUpRight aria-hidden="true" className="h-3 w-3" /></a></div>
             </details>
           </section>
           <section><h2 className={heading}>{it ? 'Come funziona la selezione' : 'The selection process'}</h2>
             <ol className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-base text-gray-600 dark:text-gray-300">{(it ? ['Valutazione del CV', 'Colloqui conoscitivi', 'Eventuali prove pratiche'] : ['CV review', 'Introductory interviews', 'Possible practical assessments']).map((text, i) => <li key={text} className="flex items-center gap-2"><span className="text-xs font-semibold text-Stele-teal">0{i + 1}</span>{text}</li>)}</ol>
-            <a className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-Stele-blue underline underline-offset-4 dark:text-white" href="/hiring/legal-product-specialist.provisional.it.pdf">{it ? 'Leggi la descrizione completa' : 'Read the full description'}<ArrowUpRight aria-hidden="true" className="h-4 w-4" /></a>
           </section>
         </div>
         <section id="application" className="glass scroll-mt-28 rounded-2xl p-6 sm:p-8 lg:col-span-5" aria-labelledby="apply-title">
