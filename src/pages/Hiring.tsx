@@ -17,7 +17,7 @@ const copy = {
     offer: 'La proposta, con trasparenza',
     growth: 'Possibile evoluzione verso Legal Product Lead, concordando impegno, responsabilità e condizioni economiche. Il ruolo non attribuisce cariche amministrative o poteri societari.',
     selection: 'Come ci conosceremo', selectionText: 'Valutazione del CV, colloqui ed eventuali prove pratiche. Una possibile collaborazione pilota avrà attività, durata e condizioni economiche formalizzate prima dell’avvio, separatamente dalle prove di selezione. Selezione aperta senza discriminazioni su caratteristiche personali non pertinenti.',
-    pdf: 'Descrizione della collaborazione (PDF)', apply: 'Candidati', name: 'Nome e cognome', email: 'Email', linkedin: 'LinkedIn (facoltativo, consigliato)', motivation: 'Breve motivazione (facoltativa)', cv: 'CV obbligatorio · PDF, massimo 5 MB', privacy: 'Ho letto l’informativa candidati', future: 'Acconsento alla conservazione del mio profilo per opportunità future, fino a 24 mesi dalla candidatura. Posso revocare il consenso in qualsiasi momento. Il rifiuto non influisce sulla selezione attuale.',
+    apply: 'Candidati', name: 'Nome e cognome', email: 'Email', linkedin: 'LinkedIn (facoltativo, consigliato)', motivation: 'Breve motivazione (facoltativa)', cv: 'CV obbligatorio · PDF, massimo 5 MB', privacy: 'Ho letto l’informativa candidati', future: 'Acconsento alla conservazione del mio profilo per opportunità future, fino a 24 mesi dalla candidatura. Posso revocare il consenso in qualsiasi momento. Il rifiuto non influisce sulla selezione attuale.',
     unavailable: 'Il modulo di candidatura non è attualmente disponibile.', send: 'Invia candidatura', sending: 'Invio in corso…', success: 'Candidatura ricevuta. Conserva questo riferimento:', error: 'Invio non riuscito. Riprova. Se il problema persiste contatta info@stele.it.com.', invalid: 'Scegli un PDF valido di massimo 5 MB.',
   },
   en: {
@@ -28,7 +28,7 @@ const copy = {
     offer: 'A transparent proposal',
     growth: 'Potential progression to Legal Product Lead, with time commitment, responsibilities and financial terms agreed separately. This title confers no corporate management position or authority.',
     selection: 'The selection process', selectionText: 'CV review, interviews and possible practical assessments. Any pilot collaboration will have its scope, duration and financial terms agreed in writing before it begins, separately from selection assessments. Selection is open without discrimination based on irrelevant personal characteristics.',
-    pdf: 'Collaboration description (Italian PDF)', apply: 'Apply', name: 'Full name', email: 'Email', linkedin: 'LinkedIn (optional, recommended)', motivation: 'Brief motivation (optional)', cv: 'CV required · PDF, up to 5 MB', privacy: 'I have read the candidate privacy notice', future: 'I consent to my profile being retained for future opportunities for up to 24 months from this application. I may withdraw consent at any time. Declining does not affect this selection.', unavailable: 'The application form is currently unavailable.', send: 'Submit application', sending: 'Submitting…', success: 'Application received. Keep this reference:', error: 'Submission failed. Please retry. If the issue persists contact info@stele.it.com.', invalid: 'Choose a valid PDF up to 5 MB.',
+    apply: 'Apply', name: 'Full name', email: 'Email', linkedin: 'LinkedIn (optional, recommended)', motivation: 'Brief motivation (optional)', cv: 'CV required · PDF, up to 5 MB', privacy: 'I have read the candidate privacy notice', future: 'I consent to my profile being retained for future opportunities for up to 24 months from this application. I may withdraw consent at any time. Declining does not affect this selection.', unavailable: 'The application form is currently unavailable.', send: 'Submit application', sending: 'Submitting…', success: 'Application received. Keep this reference:', error: 'Submission failed. Please retry. If the issue persists contact info@stele.it.com.', invalid: 'Choose a valid PDF up to 5 MB.',
   },
 };
 
@@ -101,7 +101,7 @@ export default function Hiring() {
     <section className="section-padding bg-white dark:bg-gray-900">
       <div className="mx-auto grid max-w-6xl items-start gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="space-y-9 lg:col-span-7">
-          <a className="inline-flex items-center gap-2 text-sm font-medium text-Stele-blue underline underline-offset-4 dark:text-white" href="/hiring/legal-product-specialist.provisional.it.pdf">{it ? 'Leggi la descrizione completa' : 'Read the full description'}<ArrowUpRight aria-hidden="true" className="h-4 w-4" /></a>
+          <a className="inline-flex items-center gap-2 text-sm font-medium text-Stele-blue underline underline-offset-4 dark:text-white" href="/hiring/legal-product-specialist.it.pdf">{it ? 'Leggi la descrizione completa' : 'Read the full description'}<ArrowUpRight aria-hidden="true" className="h-4 w-4" /></a>
           <section aria-labelledby="contribution-title">
             <h2 id="contribution-title" className={heading}>{it ? 'Il tuo contributo' : 'Your contribution'}</h2>
             <div className="mt-6 space-y-5">{points.map(([title, description]) => <div key={title} className="border-l border-Stele-blue/20 pl-5 dark:border-gray-700"><h3 className="text-base font-semibold text-Stele-blue dark:text-white">{title}</h3><p className="mt-1 text-base leading-relaxed text-gray-600 dark:text-gray-300">{description}</p></div>)}</div>
@@ -117,7 +117,7 @@ export default function Hiring() {
             </div>
             <p className="mt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{it ? 'La partecipazione matura progressivamente. Ulteriori 2 punti percentuali potranno essere concordati e non sono automatici. Le quote sono soggette a diluizione. Valore futuro e rendimento non sono garantiti.' : 'The participation vests progressively. An additional 2 percentage points may be agreed and are not automatic. Shares are subject to dilution. Future value and returns are not guaranteed.'}</p>
             <details className="group mt-3 text-sm"><summary className="cursor-pointer py-2 font-medium text-Stele-blue underline-offset-4 hover:underline dark:text-white">{it ? 'Condizioni della proposta' : 'Proposal terms'}</summary>
-              <div className="mt-2 space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{(it ? role.conditions : englishProposalConditions).map(text => <p key={text}>{text}</p>)}<a className="inline-flex items-center gap-2 font-medium text-Stele-blue underline dark:text-white" href="/hiring/legal-product-specialist.provisional.it.pdf">{c.pdf}<ArrowUpRight aria-hidden="true" className="h-3 w-3" /></a></div>
+              <div className="mt-2 space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{(it ? role.conditions : englishProposalConditions).map(text => <p key={text}>{text}</p>)}</div>
             </details>
           </section>
           <section><h2 className={heading}>{it ? 'Come funziona la selezione' : 'The selection process'}</h2>
