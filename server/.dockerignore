@@ -1,3 +1,14 @@
+# Build context: application code only. Never ship local env, credentials or tests.
 node_modules
 .env*
 *.test.mjs
+testing/
+*.pem
+*.key
+*.p12
+*credentials*.json
+*service-account*.json
+.git
+.DS_Store
+npm-debug.log*
+README.md
