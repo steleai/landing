@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Mail, Send, Github, Linkedin } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { createUuid } from '@/lib/uuid';
 
 const socialLinks = [
   { icon: Github, href: 'https://www.github.com/Steleai', label: 'GitHub' },
@@ -13,45 +13,44 @@ const socialLinks = [
 ];
 
 const ContactSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  // Reused on retry so the server sends at most one email; reset when the form changes.
+  const key = useRef<string | null>(null);
+  const api = import.meta.env.VITE_HIRING_API_URL;
 
-  useEffect(() => {
-    emailjs.init({
-      publicKey: 'tTgQA6D5gMLCdBaDC'
-    });
-  }, []);
-
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (isSubmitting || !formRef.current) return;
+    const form = new FormData(formRef.current);
+    const body = {
+      name: String(form.get('name') ?? ''),
+      email: String(form.get('email') ?? ''),
+      message: String(form.get('message') ?? ''),
+      website: String(form.get('website') ?? ''),
+      locale: language,
+    };
     setIsSubmitting(true);
-
-    if (!formRef.current) {
-      setIsSubmitting(false);
-      return;
-    }
-
-    emailjs
-      .sendForm('service_nxdvcml', 'contact_form', formRef.current)
-      .then(() => {
-        toast({
-          title: t('messageSent'),
-          description: t('messageSentDesc')
-        });
-        formRef.current?.reset();
-        setIsSubmitting(false);
-      })
-      .catch((error) => {
-        console.error('FAILED...', error);
-        toast({
-          title: t('messageFailed'),
-          description: t('messageFailedDesc'),
-          variant: 'destructive'
-        });
-        setIsSubmitting(false);
+    try {
+      if (!api) throw new Error('VITE_HIRING_API_URL is not set');
+      key.current ??= createUuid();
+      const response = await fetch(`${api}/v1/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Idempotency-Key': key.current },
+        body: JSON.stringify(body),
       });
+      if (!response.ok) throw new Error(`contact ${response.status}`);
+      toast({ title: t('messageSent'), description: t('messageSentDesc') });
+      formRef.current?.reset();
+      key.current = null;
+    } catch (error) {
+      console.error('Contact form failed', error);
+      toast({ title: t('messageFailed'), description: t('messageFailedDesc'), variant: 'destructive' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -67,9 +66,16 @@ const ContactSection = () => {
             ref={formRef}
             id="contact-form"
             onSubmit={handleSubmit}
+            onChange={() => { key.current = null; }}
             className="glass rounded-2xl p-6 sm:p-8 space-y-6"
             data-aos="fade-up"
           >
+            {/* Honeypot: invisible to people, filled by bots. */}
+            <div aria-hidden="true" className="absolute -left-[10000px] h-px w-px overflow-hidden">
+              <label htmlFor="website">Website</label>
+              <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+            </div>
+
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="name" className="text-sm text-muted-foreground mb-2 block">

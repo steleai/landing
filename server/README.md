@@ -1,6 +1,6 @@
 # Stele hiring API
 
-Backend delle candidature di `https://stele.it.com/lavora-con-noi/`. L'infrastruttura
+Backend delle candidature di `https://stele.it.com/lavora-con-noi/` e del form contatti della home. L'infrastruttura
 (Cloud Run, job, Scheduler, IAM, secret) è gestita da Terraform in
 `steleai/sprintact-infrastructure` (`docs/stele-hiring.md`). Questo servizio non usa
 database né SMTP: i dati stanno nel bucket privato e le notifiche passano dall'API Resend.
@@ -18,6 +18,7 @@ Cloud Scheduler → Cloud Run Job (maintenance.mjs) → bucket + Resend
 | `GET /healthz` | `200 {"ok":true}` |
 | `GET /v1/hiring` | `200 {"open":boolean}` |
 | `POST /v1/applications` | multipart con `Idempotency-Key` (UUID) |
+| `POST /v1/contact` | JSON con `Idempotency-Key` (UUID), vedi [Form contatti](#form-contatti) |
 
 Campi: `name`, `email`, `linkedin`, `motivation`, `locale`, `privacyAcknowledged`,
 `privacyVersion`, `futureConsent` e il file `cv`. Il frontend imposta soltanto
@@ -98,6 +99,19 @@ Regole di invio:
   l'epoch avanza e il tentativo successivo usa una chiave nuova.
 - Un `409 invalid_idempotent_request` porta a `reconcile`. Succede ad esempio se
   `NOTIFICATION_FROM` è cambiato tra un tentativo e l'altro.
+
+## Form contatti
+
+`POST /v1/contact` con JSON `{name, email, message, locale, website}` invia una
+email a `NOTIFICATION_TO` con `Reply-To` impostato sul mittente. Non salva nulla
+nel bucket e non dipende da `HIRING_ENABLED`: richiede solo `RESEND_API_KEY`,
+`NOTIFICATION_FROM`, `NOTIFICATION_TO` e `ALLOWED_ORIGIN`.
+
+- `202`: inviato (o honeypot `website` compilato: scartato in silenzio);
+- `400`: campi non validi o `Idempotency-Key` mancante;
+- `429`: oltre 5 messaggi/ora per indirizzo o 100/ora per istanza (limite in memoria);
+- `503`: Resend non configurato o invio fallito. Il frontend riprova con la
+  stessa chiave (`stele-contact/<uuid>`), che Resend deduplica per 24 ore.
 
 ## Manutenzione (`node maintenance.mjs`)
 
