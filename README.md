@@ -51,7 +51,7 @@ Comportamento lingua:
 - Vite
 - Tailwind CSS
 - shadcn/ui (componenti UI)
-- EmailJS (form contatti)
+- Resend tramite API `server/` (form contatti e candidature)
 
 ## Sviluppo locale
 
@@ -96,7 +96,7 @@ Flusso:
 
 ## Contatti e social
 
-- Form contatti integrato con EmailJS in `src/components/ContactSection.tsx`
+- Form contatti in `src/components/ContactSection.tsx`: invia a `POST /v1/contact` dell'API (`VITE_HIRING_API_URL`), che inoltra via Resend a info@stele.it.com
 - Alcuni social possono essere temporaneamente nascosti/commentati in attesa di aggiornamento contenuti
 
 ## Dove aggiornare i contenuti

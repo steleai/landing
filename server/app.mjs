@@ -1,7 +1,8 @@
 import express from 'express';
 import multer from 'multer';
 import { applicationIdFor, applicationPaths, commitApplication, quotaAvailable, quotaDay } from './applications.mjs';
-import { acceptingConfigured, deadlinePassed, isOpen } from './config.mjs';
+import { acceptingConfigured, deadlinePassed, isOpen, notificationsConfigured } from './config.mjs';
+import { buildContactEmail, clientKey, contactSchema, createRateLimiter } from './contact.mjs';
 import { errorCode } from './log.mjs';
 import { notifyApplication } from './notifications.mjs';
 import { InfectedFileError } from './scanner.mjs';
@@ -9,6 +10,7 @@ import { applicationSchema, MAX_CV_BYTES, validatePdf } from './validation.mjs';
 
 const IDEMPOTENCY_KEY = /^[0-9a-f-]{36}$/i;
 const FIRST_NOTIFICATION_TIMEOUT_MS = 8_000;
+const CONTACT_TIMEOUT_MS = 8_000;
 
 export function createApp({ config, store, scan, send, now = Date.now, log = () => {} }) {
   const app = express();
@@ -23,6 +25,35 @@ export function createApp({ config, store, scan, send, now = Date.now, log = () 
     if (origin) res.set({ 'Access-Control-Allow-Origin': origin, Vary: 'Origin', 'Access-Control-Allow-Methods': 'GET,POST,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type,Idempotency-Key' });
     if (req.method === 'OPTIONS') return res.sendStatus(204);
     next();
+  });
+
+  // Contact form. Independent of hiring: needs only Resend and ALLOWED_ORIGIN.
+  // Each client reuses its Idempotency-Key on retry, so Resend sends at most once.
+  const contactPerClient = createRateLimiter({ limit: 5, windowMs: 3_600_000, now });
+  const contactGlobal = createRateLimiter({ limit: 100, windowMs: 3_600_000, now });
+  app.post('/v1/contact', express.json({ limit: '16kb' }), async (req, res) => {
+    if (!notificationsConfigured(config) || !config.allowedOrigin) return res.status(503).json({ error: 'closed' });
+    const key = req.get('Idempotency-Key');
+    if (!key || !IDEMPOTENCY_KEY.test(key)) return res.status(400).json({ error: 'idempotency_key' });
+    const parsed = contactSchema.safeParse(req.body ?? {});
+    if (!parsed.success) return res.status(400).json({ error: 'invalid_fields' });
+    if (parsed.data.website) {
+      log('WARNING', 'contact_honeypot');
+      return res.status(202).json({ ok: true });
+    }
+    if (!contactPerClient(clientKey(req)) || !contactGlobal('all')) return res.status(429).set('Retry-After', '3600').json({ error: 'rate_limit' });
+    let result;
+    try {
+      result = await send({ apiKey: config.resendApiKey, payload: buildContactEmail(parsed.data, config), idempotencyKey: `stele-contact/${key}`, timeoutMs: CONTACT_TIMEOUT_MS });
+    } catch (error) {
+      result = { outcome: 'ambiguous', reason: errorCode(error) };
+    }
+    if (result.outcome === 'sent') {
+      log('INFO', 'contact_sent', { providerId: result.id });
+      return res.status(202).json({ ok: true });
+    }
+    log('WARNING', 'contact_failed', { outcome: result.outcome, reason: result.reason });
+    return res.status(503).json({ error: 'temporarily_unavailable' });
   });
 
   app.get('/healthz', (_req, res) => res.json({ ok: true }));
