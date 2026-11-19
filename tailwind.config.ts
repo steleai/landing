@@ -2,7 +2,8 @@
 import type { Config } from "tailwindcss";
 
 export default {
-	darkMode: ["class"],
+	// Light only: dark: variants never match (nothing sets this attribute)
+	darkMode: ["selector", "[data-never-dark]"],
 	content: [
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
@@ -64,9 +65,12 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				Stele: {
-					blue: "#1A365D",
-					teal: "#38B2AC",
-					orange: "#ED8936"
+					blue: "#1F47B0",
+					ink: "#17223B",
+					sabbia: "#F0E9DD",
+					surface: "#FBF7F0",
+					line: "#E0D5C3",
+					muted: "#4D5568"
 				}
 			},
 			borderRadius: {

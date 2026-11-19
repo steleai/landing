@@ -2,21 +2,25 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const MissionSection = () => {
   const { t } = useLanguage();
+  const principles = [1, 2, 3, 4].map((n) => ({
+    title: t(`missionP${n}Title` as 'missionP1Title'),
+    desc: t(`missionP${n}Desc` as 'missionP1Desc'),
+  }));
 
   return (
-    <section id="mission" className="section-padding bg-slate-50 dark:bg-gray-800/70">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-12 max-w-3xl" data-aos="fade-up">
-          <p id="mission-label" className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-Stele-teal">{t('missionLabel')}</p>
-          <h2 id="mission-title" className="text-3xl font-bold leading-tight text-Stele-blue dark:text-white md:text-5xl">
-            {t('missionTitle')}
-          </h2>
-        </div>
-
-        <div className="max-w-4xl" data-aos="fade-up" data-aos-delay={100}>
-          <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">{t('missionDesc1')}</p>
-          <p className="mt-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300">{t('missionDesc2')}</p>
-        </div>
+    <section className="sec alt" id="mission" aria-labelledby="h-mission">
+      <div className="c">
+        <p className="label">{t('missionLabel')}</p>
+        <h2 id="h-mission">{t('missionTitle')}</h2>
+        <p className="sec-text">{t('missionDesc')}</p>
+        <ul className="principles">
+          {principles.map((p) => (
+            <li className="principle" key={p.title}>
+              <h3>{p.title}</h3>
+              <p>{p.desc}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

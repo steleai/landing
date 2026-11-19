@@ -1,0 +1,36 @@
+/* Hiring hero: night-blue band with the home hero's two shader grounds */
+.hh { position: relative; isolation: isolate; overflow: hidden; background: linear-gradient(180deg, #0E1940 0%, #13225A 100%); color: #F4F1EA; padding: 120px 24px 64px; min-height: min(78vh, 760px); display: flex; align-items: center; }
+.hh .hh-fx { z-index: 0; }
+/* only the dot terrain here: across the whole band, the dark zone behind the text keeps it readable */
+.hh .hh-dots { -webkit-mask: linear-gradient(180deg, transparent 0%, #000 45%); mask: linear-gradient(180deg, transparent 0%, #000 45%); }
+.hh-wrap { position: relative; z-index: 1; width: 100%; max-width: 72rem; margin: 0 auto; }
+.hh-text { position: relative; isolation: isolate; max-width: 600px; }
+.hh-text::before { content: ""; position: absolute; z-index: -1; left: -56px; right: -40px; top: 8%; bottom: -36px; border-radius: 48px; background: rgba(13, 23, 60, .82); filter: blur(34px); pointer-events: none; }
+.hh-back { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-bottom: 12px; font-size: 14px; font-weight: 500; color: #B4C3E6; text-decoration: none; }
+.hh-back:hover { color: #fff; }
+.hh-eyebrow { margin: 0 0 12px; font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #9DB9F5; }
+.hh-title { margin: 0 0 20px; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.12; letter-spacing: -.01em; color: #F4F1EA; }
+.hh-intro { margin: 0 0 28px; max-width: 36rem; font-size: 1.125rem; line-height: 1.6; color: #B4C3E6; }
+.hh-facts { list-style: none; margin: 0 0 32px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 1rem; font-weight: 500; color: #C9D6F2; }
+.hh-facts li { display: inline-flex; align-items: center; gap: 8px; }
+.hh-facts svg { width: 16px; height: 16px; flex: none; color: #9DB9F5; }
+.hh-cta .btn { min-height: 48px; }
+.hh :focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: none; }
+.hh .btn-primary { background: #3D6BEB; color: #fff; }
+.hh .btn-primary:hover { background: #2F5CE0; }
+@media (max-width: 767px) { .hh { min-height: 0; padding: 104px 20px 48px; } .hh-text::before { left: -20px; right: -20px; } }
+
+/* one-time entrance, about 600 ms in total; nothing loops */
+@media (prefers-reduced-motion: no-preference) {
+  .hh .hh-fx { animation: hh-fade .9s ease-out both; }
+  .hh-i { animation: hh-up .45s cubic-bezier(.2, .7, .3, 1) both; }
+  .hh-i:nth-child(1) { animation-delay: .05s; }
+  .hh-i:nth-child(2) { animation-delay: .1s; }
+  .hh-i:nth-child(3) { animation-delay: .15s; }
+  .hh-i:nth-child(4) { animation-delay: .2s; }
+  .hh-i:nth-child(5) { animation-delay: .25s; }
+  .hh-i:nth-child(6) { animation-delay: .3s; }
+}
+@keyframes hh-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes hh-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.hh-deadline { margin: -12px 0 28px; font-size: .9375rem; font-weight: 600; color: #F4F1EA; }

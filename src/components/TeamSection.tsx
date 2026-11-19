@@ -1,66 +1,79 @@
-
-import { Card, CardContent } from "@/components/ui/card";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const TeamSection = () => {
-  const { t } = useLanguage();
-  
+  const { t, language } = useLanguage();
+
   const teamMembers = [
     {
       id: 1,
-      name: "Alessandro Mariotti",
-      role: "CEO",
-      bio: "Automation Engineer & Political Scientist",
-      image: "/lovable-uploads/alessandro.jpg"
+      name: "Adam Amer",
+      area: "AI, Data & Research",
+      education: {
+        it: "Magistrale in Artificial Intelligence, Università Bocconi",
+        en: "MSc in Artificial Intelligence, Bocconi University"
+      },
+      image: "/team/adam.jpg"
     },
     {
       id: 2,
-      name: "Romeo Odajiu",
-      role: "CPO",
-      bio: "Computer Science Engineer",
-      image: "/lovable-uploads/romeo.jpg"
+      name: "Simone Spreafico",
+      area: "Infrastructure & Security",
+      education: {
+        it: "Sicurezza dei sistemi e delle reti informatiche, Università degli Studi di Milano",
+        en: "Computer Systems and Network Security, University of Milan"
+      },
+      image: "/team/simone.jpg"
     },
     {
       id: 3,
-      name: "Adam Amer",
-      role: "CRO",
-      bio: "Social Scientist & AI Engineer",
-      image: "/lovable-uploads/adam.jpg"
+      name: "Romeo Odajiu",
+      area: "Product & Stakeholder Management",
+      education: {
+        it: "Magistrale in Ingegneria informatica, Università degli Studi di Bergamo",
+        en: "MSc in Computer Engineering, University of Bergamo"
+      },
+      image: "/team/romeo.jpg"
     },
     {
       id: 4,
-      name: "Simone Spreafico",
-      role: "CTO",
-      bio: "Cybersecurity Specialist",
-      image: "/lovable-uploads/simone.jpg"
+      name: "Alessandro Mariotti",
+      area: "Business Development & Operations",
+      education: {
+        it: "Ingegneria dell'automazione, Politecnico di Milano",
+        en: "Automation Engineering, Politecnico di Milano"
+      },
+      image: "/team/alessandro.jpg"
     }
   ];
 
   return (
-    <section id="team" className="section-padding bg-slate-50 dark:bg-gray-800">
-      <div className="container mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-6xl font-bold text-Stele-blue dark:text-white mb-4">{t('aboutUsTeam')}</h2>
-        </div>
+    <section className="sec" id="team" aria-labelledby="h-team">
+      <div className="c">
+        <p className="label">{t('teamLabel')}</p>
+        <h2 id="h-team">{t('teamTitle')}</h2>
+        <p className="sec-text">{t('teamDesc')}</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <ul className="team-grid">
           {teamMembers.map((member) => (
-            <Card key={member.id} className="overflow-hidden card-effect dark:bg-gray-800 dark:border-gray-700">
-              <div className="aspect-square relative overflow-hidden">
-                <img 
-                  src={member.image} 
-                  alt={member.name} 
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
+            <li className="member" key={member.id}>
+              <img src={member.image} alt={member.name} width={600} height={600} loading="lazy" decoding="async" />
+              <div className="body">
+                <h3>{member.name}</h3>
+                <p className="area">{member.area}</p>
+                <p className="edu">{member.education[language]}</p>
               </div>
-              <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-1 text-Stele-blue dark:text-white">{member.name}</h3>
-                <p className="text-Stele-teal font-medium mb-3">{member.role}</p>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">{member.bio}</p>
-              </CardContent>
-            </Card>
+            </li>
           ))}
-        </div>
+        </ul>
+
+        <p className="hiring">
+          <span>{t('teamHiring')}</span>
+          <a className="textlink" href="/lavora-con-noi/">
+            {t('teamHiringLink')}
+            <ArrowRight aria-hidden="true" />
+          </a>
+        </p>
       </div>
     </section>
   );
