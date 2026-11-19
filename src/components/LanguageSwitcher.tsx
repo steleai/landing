@@ -1,49 +1,39 @@
-
-import { useState } from "react";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { Button } from "@/components/ui/button";
+import { useLanguage } from '@/contexts/LanguageContext';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
+} from '@/components/ui/dropdown-menu';
+import { ChevronDown } from 'lucide-react';
+
+const languages = [
+  { code: 'it' as const, short: 'IT', name: 'Italiano' },
+  { code: 'en' as const, short: 'EN', name: 'English' },
+];
 
 const LanguageSwitcher = () => {
-  const { language, setLanguage } = useLanguage();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const languages = [
-    { code: "en" as const, name: "English", flag: "🇬🇧" },
-    { code: "it" as const, name: "Italiano", flag: "🇮🇹" },
-  ];
+  const { language, setLanguage, t } = useLanguage();
+  const current = languages.find((l) => l.code === language) ?? languages[0];
 
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false}>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="sm"
-          aria-label={language === 'it' ? 'Cambia lingua' : 'Change language'}
-          className="h-10 w-16 shrink-0 gap-1 px-2 text-gray-700 dark:text-gray-300 md:w-32 md:px-3"
-        >
-          <span aria-hidden="true">{languages.find(lang => lang.code === language)?.flag}</span>
-          <span className="hidden md:inline-block">{language === "en" ? "English" : "Italiano"}</span>
-          <ChevronDown className="h-4 w-4" />
-        </Button>
+        <button type="button" className="lang-btn" aria-label={`${t('langLabel')}: ${current.name}`}>
+          <span aria-hidden="true">{current.short}</span>
+          <ChevronDown aria-hidden="true" />
+        </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="min-w-[10rem] border-border bg-card text-foreground">
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
-            onClick={() => {
-              setLanguage(lang.code);
-              setIsOpen(false);
-            }}
-            className="flex items-center gap-2"
+            lang={lang.code}
+            onSelect={() => setLanguage(lang.code)}
+            className="min-h-11 cursor-pointer gap-3 text-base"
+            aria-current={lang.code === language ? 'true' : undefined}
           >
-            <span className="text-base">{lang.flag}</span>
+            <span className="w-6 font-semibold" aria-hidden="true">{lang.short}</span>
             <span>{lang.name}</span>
           </DropdownMenuItem>
         ))}

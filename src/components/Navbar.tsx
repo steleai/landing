@@ -1,125 +1,164 @@
-import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import ThemeToggle from './ThemeToggle';
+import { useCallback, useEffect, useId, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
-import SerifLogo from './SerifLogo';
+import SteleWordmark from './SteleWordmark';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+const HEADER_H = 72;
+const SPY = ['prodotto', 'visione', 'mission', 'team', 'contatti'];
+
+/**
+ * Header. Over the hero: night blue with light links and the white wordmark. After the hero: a Sabbia bar.
+ * On the other pages there is no hero, so it is always the Sabbia bar.
+ */
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
+  const { pathname } = useLocation();
+  const home = pathname === '/';
+  const [over, setOver] = useState(home);
+  const [open, setOpen] = useState(false);
+  const [current, setCurrent] = useState<string | null>(null);
+  const button = useRef<HTMLButtonElement>(null);
+  const menuId = useId();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
+    // any page hero carries data-hero; the home hero is found by its id
+    const hero = document.querySelector<HTMLElement>('[data-hero]') ?? (home ? document.getElementById('hero') : null);
+    if (!hero) {
+      setOver(false);
+      return;
+    }
+    const check = () => setOver(hero.getBoundingClientRect().bottom > HEADER_H);
+    check();
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', check);
+      window.removeEventListener('resize', check);
     };
+  }, [home, pathname]);
+
+  // scrollspy: the section under a line a little below the header; none while the hero is in view
+  useEffect(() => {
+    if (!home) {
+      setCurrent(null);
+      return;
+    }
+    let raf = 0;
+    const read = () => {
+      raf = 0;
+      const line = HEADER_H + window.innerHeight * 0.3;
+      let found: string | null = null;
+      for (const id of SPY) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.top <= line && r.bottom > line) found = id;
+      }
+      setCurrent(found);
+    };
+    const on = () => {
+      if (!raf) raf = requestAnimationFrame(read);
+    };
+    read();
+    window.addEventListener('scroll', on, { passive: true });
+    window.addEventListener('resize', on);
+    return () => {
+      window.removeEventListener('scroll', on);
+      window.removeEventListener('resize', on);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [home]);
+
+  const close = useCallback((returnFocus: boolean) => {
+    setOpen(false);
+    if (returnFocus) button.current?.focus();
   }, []);
 
-  const navLinks = [
-    { name: t('navResearch'), href: '#research-label' },
-    { name: t('navProducts'), href: '#products-label' },
-    { name: t('navDevelopers'), href: '#developers-label' },
-    { name: t('navMissionTeam'), href: '#mission-label' },
-    { name: t('navContact'), href: '#contact' },
-    { name: language === 'it' ? 'Lavora con noi' : 'Careers', href: '/lavora-con-noi/' }
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close(true);
+    };
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    window.addEventListener('resize', onResize);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      window.removeEventListener('resize', onResize);
+    };
+  }, [open, close]);
+
+  const prefix = home ? '' : '/';
+  const links = [
+    { name: t('navProduct'), href: `${prefix}#prodotto`, id: 'prodotto' },
+    { name: t('navVision'), href: `${prefix}#visione`, id: 'visione' },
+    { name: t('navMission'), href: `${prefix}#mission`, id: 'mission' },
+    { name: t('navTeam'), href: `${prefix}#team`, id: 'team' },
+    { name: t('navContact'), href: `${prefix}#contatti`, id: 'contatti' },
+    { name: t('navCareers'), href: '/lavora-con-noi/', badge: t('navBadge') },
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow,padding] duration-300 ${
-        isScrolled
-          ? 'bg-white/90 dark:bg-gray-950/90 backdrop-blur-xl shadow-sm border-b border-gray-200/70 dark:border-gray-800/80 py-3'
-          : 'bg-transparent py-5'
-      }`}
-    >
-      <div className="container mx-auto px-4 flex items-center justify-between gap-4">
-        <a href="/#hero" className="flex items-center shrink-0" aria-label="Stele homepage">
-          <SerifLogo size={88} variant="full" className="mr-2 max-h-14 sm:max-h-[88px]" />
-        </a>
-
-        <div className="hidden xl:flex items-center justify-center flex-1">
-          <div className="flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href.startsWith('#') ? `/${link.href}` : link.href}
-                className="whitespace-nowrap text-sm font-medium tracking-wide text-gray-700 dark:text-gray-300 hover:text-Stele-blue dark:hover:text-white transition-colors duration-300"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <div className="hidden xl:flex shrink-0 items-center gap-2">
-          <Button asChild className="w-40 bg-Stele-blue hover:bg-Stele-blue/90 text-white rounded-full px-5">
-            <a href="https://sprintact.eu" target="_blank" rel="noopener noreferrer">
-              {t('ctaTrySprintAct')}
+    <>
+      <a className="skip" href="#main">
+        {t('skipLink')}
+      </a>
+      <header className={`top${over ? ' over' : ''}${open ? ' menu-open' : ''}`} id="top">
+        <div className="c">
+          <a className="brand" href={home ? '#hero' : '/'} aria-label={t('navHomeLabel')}>
+            <SteleWordmark tone={over ? 'light' : 'brand'} height={30} />
+          </a>
+          <nav className="nav" aria-label={t('navMain')}>
+            <ul>
+              {links.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} aria-current={l.id && l.id === current ? 'true' : undefined}>
+                    <span className="lt" data-t={l.name}>{l.name}</span>
+                    {l.badge && <span className="badge">{l.badge}</span>}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div className="top-actions">
+            <a className="btn btn-primary top-cta" href={`${prefix}#prodotto`}>
+              {t('ctaSprintAct')}
             </a>
-          </Button>
-          <LanguageSwitcher />
-          <ThemeToggle />
-        </div>
-
-        <div className="xl:hidden flex shrink-0 items-center gap-2 ml-auto">
-          <LanguageSwitcher />
-          <ThemeToggle />
-          <button
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-            className="text-gray-700 dark:text-gray-300 focus:outline-none"
-            aria-label="Toggle navigation"
-            aria-expanded={mobileMenuOpen}
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+            <LanguageSwitcher />
+            <button
+              ref={button}
+              type="button"
+              className="menu-btn"
+              aria-expanded={open}
+              aria-controls={menuId}
+              aria-label={open ? t('menuClose') : t('menuOpen')}
+              onClick={() => setOpen((v) => !v)}
             >
-              {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-              )}
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      {mobileMenuOpen && (
-        <div className="xl:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-gray-200 dark:border-gray-800 shadow-lg animate-fade-in">
-          <div className="px-4 py-4 space-y-3">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href.startsWith('#') ? `/${link.href}` : link.href}
-                className="block text-gray-700 dark:text-gray-300 hover:text-Stele-blue dark:hover:text-white transition-colors duration-300 py-2 font-medium"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.name}
-              </a>
-            ))}
-            <Button asChild className="w-full mt-1 bg-Stele-blue hover:bg-Stele-blue/90 text-white">
-              <a
-                href="https://sprintact.eu"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t('ctaTrySprintAct')}
-              </a>
-            </Button>
+              {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+            </button>
           </div>
         </div>
-      )}
-    </nav>
+        <nav id={menuId} className="menu" aria-label={t('navMain')} hidden={!open}>
+          <ul>
+            {links.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} aria-current={l.id && l.id === current ? 'true' : undefined} onClick={() => setOpen(false)}>
+                  <span className="lt" data-t={l.name}>{l.name}</span>
+                  {l.badge && <span className="badge">{l.badge}</span>}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a className="btn btn-primary" href={`${prefix}#prodotto`} onClick={() => setOpen(false)}>
+            {t('ctaSprintAct')}
+          </a>
+        </nav>
+      </header>
+    </>
   );
 };
 

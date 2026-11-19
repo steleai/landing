@@ -1,80 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Light only. The shadcn tokens below carry the Stele palette: Sabbia ground, ink text, one blue accent. */
 @layer base {
   :root {
-    --background: 220 33% 99%;
-    --foreground: 222.2 84% 4.9%;
+    color-scheme: light;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --background: 38 39% 90%;
+    --foreground: 222 44% 16%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --card: 38 58% 96%;
+    --card-foreground: 222 44% 16%;
 
-    --primary: 211 100% 24%;
-    --primary-foreground: 210 40% 98%;
+    --popover: 38 58% 96%;
+    --popover-foreground: 222 44% 16%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --primary: 223 71% 49%;
+    --primary-foreground: 38 58% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --secondary: 38 36% 86%;
+    --secondary-foreground: 222 44% 16%;
 
-    --accent: 182 71% 46%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 38 36% 86%;
+    --muted-foreground: 222 15% 35%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --accent: 38 36% 86%;
+    --accent-foreground: 222 44% 16%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 211 100% 24%;
+    --destructive: 5 61% 40%;
+    --destructive-foreground: 38 58% 98%;
+
+    --border: 37 32% 82%;
+    --input: 37 20% 62%;
+    --ring: 223 70% 41%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-  
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    --sidebar-background: 38 58% 96%;
+    --sidebar-foreground: 222 44% 16%;
+    --sidebar-primary: 223 71% 49%;
+    --sidebar-primary-foreground: 38 58% 98%;
+    --sidebar-accent: 38 36% 86%;
+    --sidebar-accent-foreground: 222 44% 16%;
+    --sidebar-border: 37 32% 82%;
+    --sidebar-ring: 223 70% 41%;
 
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-
-    --accent: 182 71% 46%;
-    --accent-foreground: 240 5.9% 10%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    /* page tokens (from the approved preview) */
+    --bg: #F0E9DD;
+    --surface: #FBF7F0;
+    --ink: #17223B;
+    --muted: #4D5568;
+    --line: #E0D5C3;
+    --accent-blue: #2456D6;
+    --accent-text: #1F47B0;
+    --night: #0E1940;
+    --night-2: #13225A;
+    --band: #12203B;
   }
 }
 
@@ -83,37 +68,46 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  }
-
-  .dark body {
-    background-image:
-      linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
-    background-size: 72px 72px;
-    background-attachment: fixed;
-  }
-
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    background: #F0E9DD;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 18px;
+    line-height: 1.65;
+    overflow-x: clip;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* focus: dark ring with a light gap, readable on Sabbia and, with the .on-dark rules in home.css, on night blue */
+  :focus {
+    outline: none;
+  }
+  :focus-visible {
+    outline: 3px solid #101D38;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #fff;
   }
 }
 
 @layer components {
   .section-padding {
-    @apply py-20 px-4 md:px-8 lg:px-12;
+    @apply py-16 px-6 md:py-20;
   }
-  
+
   .card-effect {
     @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
   }
 
-  .gradient-bg {
-    @apply bg-gradient-to-br from-Stele-blue via-Stele-blue/95 to-Stele-blue/90;
-  }
-  
   /* Logo animation */
   @keyframes float {
     0%, 100% {
@@ -123,18 +117,11 @@
       transform: translateY(-10px);
     }
   }
-  
+
   .animate-float {
     animation: float 3s ease-in-out infinite;
-  }
-  
-  .Stele-logo-animated .magnifier {
-    transition: transform 0.3s ease-out;
   }
 }
 
 @layer utilities {
-  .glass {
-    @apply bg-white/80 backdrop-blur-xl border border-Stele-blue/10 dark:bg-gray-900/55 dark:border-gray-700/70;
-  }
 }

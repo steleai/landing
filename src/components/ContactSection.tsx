@@ -1,30 +1,44 @@
 import { useRef, useState } from 'react';
-import { Mail, Send, Github, Linkedin } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { AlertCircle, Github, Linkedin, Mail, Send } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { createUuid } from '@/lib/uuid';
 
-const socialLinks = [
-  { icon: Github, href: 'https://www.github.com/Steleai', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://www.linkedin.com/company/steleai/', label: 'LinkedIn' },
-];
+type Errors = Partial<Record<'name' | 'email' | 'message', string>>;
+
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const ContactSection = () => {
   const { t, language } = useLanguage();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Errors>({});
   const formRef = useRef<HTMLFormElement>(null);
   // Reused on retry so the server sends at most one email; reset when the form changes.
   const key = useRef<string | null>(null);
   const api = import.meta.env.VITE_HIRING_API_URL;
 
+  const validate = (form: FormData): Errors => {
+    const found: Errors = {};
+    if (!String(form.get('name') ?? '').trim()) found.name = t('contactErrName');
+    const email = String(form.get('email') ?? '').trim();
+    if (!email) found.email = t('contactErrEmail');
+    else if (!EMAIL.test(email)) found.email = t('contactErrEmailFormat');
+    if (!String(form.get('message') ?? '').trim()) found.message = t('contactErrMessage');
+    return found;
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (isSubmitting || !formRef.current) return;
     const form = new FormData(formRef.current);
+    const found = validate(form);
+    setErrors(found);
+    const first = (['name', 'email', 'message'] as const).find((f) => found[f]);
+    if (first) {
+      formRef.current.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
+      return;
+    }
     const body = {
       name: String(form.get('name') ?? ''),
       email: String(form.get('email') ?? ''),
@@ -53,131 +67,105 @@ const ContactSection = () => {
     }
   };
 
-  return (
-    <section id="contact" className="section-padding relative bg-slate-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-14" data-aos="fade-up">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-Stele-blue dark:text-white">{t('contactTitle')}</h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">{t('contactDesc')}</p>
-        </div>
+  const hasErrors = Object.keys(errors).length > 0;
+  const field = (id: 'name' | 'email' | 'message') => ({
+    id,
+    name: id,
+    'aria-invalid': errors[id] ? (true as const) : undefined,
+    'aria-describedby': errors[id] ? `err-${id}` : undefined,
+  });
+  const error = (id: 'name' | 'email' | 'message') =>
+    errors[id] ? (
+      <p id={`err-${id}`} className="err">
+        <AlertCircle aria-hidden="true" />
+        <span>{errors[id]}</span>
+      </p>
+    ) : null;
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
+  return (
+    <section className="sec alt" id="contatti" aria-labelledby="h-contatti">
+      <div className="c">
+        <h2 id="h-contatti">{t('contactTitle')}</h2>
+        <p className="sec-text">
+          {t('contactDesc')}
+          <br />
+          {t('contactDesc2')}
+        </p>
+
+        <div className="contact-grid">
           <form
             ref={formRef}
             id="contact-form"
+            className="form"
+            noValidate
             onSubmit={handleSubmit}
-            onChange={() => { key.current = null; }}
-            className="glass rounded-2xl p-6 sm:p-8 space-y-6"
-            data-aos="fade-up"
+            onChange={() => {
+              key.current = null;
+            }}
           >
             {/* Honeypot: invisible to people, filled by bots. */}
-            <div aria-hidden="true" className="absolute -left-[10000px] h-px w-px overflow-hidden">
+            <div aria-hidden="true" className="hp">
               <label htmlFor="website">Website</label>
               <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="name" className="text-sm text-muted-foreground mb-2 block">
-                  {t('contactName')}
-                </label>
-                <Input
-                  id="name"
-                  name="name"
-                  required
-                  maxLength={100}
-                  placeholder={t('contactNamePlaceholder')}
-                  className="bg-secondary/70 border-border"
-                />
+            <div role="alert">
+              {hasErrors && <p className="form-summary">{t('contactFormErrors')}</p>}
+            </div>
+
+            <div className="row">
+              <div className="field">
+                <label htmlFor="name">{t('contactName')}</label>
+                <input type="text" required maxLength={100} autoComplete="name" {...field('name')} />
+                {error('name')}
               </div>
-              <div>
-                <label htmlFor="email" className="text-sm text-muted-foreground mb-2 block">
-                  {t('contactEmail')}
-                </label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  maxLength={255}
-                  placeholder={t('contactEmailPlaceholder')}
-                  className="bg-secondary/70 border-border"
-                />
+              <div className="field">
+                <label htmlFor="email">{t('contactEmail')}</label>
+                <input type="email" required maxLength={255} autoComplete="email" {...field('email')} />
+                {error('email')}
               </div>
             </div>
 
-            <div>
-              <label htmlFor="message" className="text-sm text-muted-foreground mb-2 block">
-                {t('contactMessage')}
-              </label>
-              <Textarea
-                id="message"
-                name="message"
-                required
-                maxLength={1000}
-                rows={5}
-                placeholder={t('contactMessagePlaceholder')}
-                className="bg-secondary/70 border-border resize-none"
-              />
+            <div className="field">
+              <label htmlFor="message">{t('contactMessage')}</label>
+              <textarea required maxLength={1000} rows={5} {...field('message')} />
+              {error('message')}
             </div>
 
-            <Button
-              type="submit"
-              className="rounded-full px-8 w-full sm:w-auto bg-Stele-blue hover:bg-Stele-blue/90 text-white"
-              disabled={isSubmitting}
-            >
+            <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
               {isSubmitting ? t('contactSending') : (
                 <>
                   {t('contactSend')}
-                  <Send className="ml-2 h-4 w-4" />
+                  <Send aria-hidden="true" />
                 </>
               )}
-            </Button>
+            </button>
           </form>
 
-          <div className="flex flex-col justify-center space-y-8" data-aos="fade-up" data-aos-delay={100}>
-            <div>
-              <h3 className="text-xl font-semibold mb-3 text-Stele-blue dark:text-white">{t('contactDirect')}</h3>
-              <a
-                href="mailto:info@stele.it.com"
-                className="inline-flex items-center gap-3 text-Stele-blue dark:text-Stele-teal hover:underline text-lg"
-              >
-                <Mail className="h-5 w-5" />
+          <ul className="contact-links" aria-label={t('contactLinks')}>
+            <li>
+              <a href="mailto:info@stele.it.com">
+                <Mail aria-hidden="true" />
                 info@stele.it.com
               </a>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4 text-Stele-blue dark:text-white">{t('contactFollow')}</h3>
-              <div className="flex gap-4">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                    className="w-12 h-12 glass rounded-xl flex items-center justify-center text-muted-foreground hover:text-Stele-blue dark:hover:text-Stele-teal hover:border-Stele-blue/30 dark:hover:border-Stele-teal/30 transition-colors"
-                  >
-                    <social.icon className="h-5 w-5" />
-                  </a>
-                ))}
-                {/* <a
-                  href="https://www.reddit.com/user/Stele_AI/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Reddit"
-                  className="w-12 h-12 glass rounded-xl flex items-center justify-center text-muted-foreground hover:text-Stele-blue dark:hover:text-Stele-teal hover:border-Stele-blue/30 dark:hover:border-Stele-teal/30 transition-colors"
-                >
-                  <FaReddit className="h-5 w-5" />
-                </a> */}
-              </div>
-            </div>
-
-            <div className="glass rounded-2xl p-6">
-              <p className="text-sm text-muted-foreground leading-relaxed">{t('contactNote')}</p>
-            </div>
-          </div>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/company/steleai/" target="_blank" rel="noopener noreferrer">
+                <Linkedin aria-hidden="true" />
+                <span>
+                  LinkedIn<span className="sr-only"> ({t('newTab')})</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.github.com/Steleai" target="_blank" rel="noopener noreferrer">
+                <Github aria-hidden="true" />
+                <span>
+                  GitHub<span className="sr-only"> ({t('newTab')})</span>
+                </span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

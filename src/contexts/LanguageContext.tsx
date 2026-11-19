@@ -1,186 +1,244 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
 export const translations = {
+  // EN draft, to be reviewed
   en: {
-    navResearch: 'Research',
-    navProducts: 'Products',
-    navDevelopers: 'Developers / GitHub',
-    navMissionTeam: 'Mission & Team',
+    skipLink: 'Skip to content',
+    navMain: 'Main',
+    navHomeLabel: 'Stele, back to the top of the page',
+    navProduct: 'Product',
+    navVision: 'Vision',
+    navMission: 'Mission',
+    navTeam: 'Team',
     navContact: 'Contact',
-    ctaTrySprintAct: 'Try SprintAct',
+    navCareers: 'Work with us',
+    navBadge: '1 open position',
+    ctaSprintAct: 'Discover SprintAct',
+    menuOpen: 'Open the menu',
+    menuClose: 'Close the menu',
+    langLabel: 'Change language',
+    newTab: 'opens in a new tab',
 
-    heroEyebrow: 'AI-native legal technology for Italy',
-    heroTitle: 'Stele builds trusted AI tools for the',
-    heroTitleHighlight: 'Italian legal ecosystem',
+    heroTitle: 'We build artificial intelligence for people who work with the law',
     heroDesc:
-      'We design legal tech products that make institutional and regulatory data easier to access, verify and use in daily decisions. SprintAct is our first product line, developed to support legal research with speed and precision.',
-    heroPrimaryCta: 'Explore the Product Vision',
-    heroSecondaryCta: 'Try SprintAct',
-    researchLabel: 'Research',
-    researchTitle: 'Evidence, papers and case studies that build legal trust.',
-    researchDesc:
-      'Stele invests in research activity to strengthen credibility in the legal world. This section collects papers, case studies, and collaborations that document our methods and outcomes.',
-    researchPoint1Title: 'Applied legal AI papers',
-    researchPoint1Desc:
-      'Publications on retrieval quality, source grounding, and explainability for legal AI systems in the Italian context.',
-    researchPoint2Title: 'Case studies with institutions and companies',
-    researchPoint2Desc:
-      'Operational case studies that show how legal workflows improve when data quality, traceability, and automation are aligned.',
-    researchPoint3Title: 'Open methodological notes',
-    researchPoint3Desc:
-      'Technical notes and working documents that clarify the assumptions, limits and benchmark choices behind our models.',
+      'Stele is a legal tech company based in Bergamo. We develop software in which every AI answer can be checked against its sources, because a lawyer must be able to verify what they sign.',
+    heroCtaVision: 'Our vision',
+    heroSteleSr:
+      'The stele, the symbol of Stele, made of four blocks: Research, Monitoring, Impact, Decision.',
+    heroPhases: 'The four stages',
+    heroProductCap: 'Our product',
+    heroProductLink: 'SprintAct, our product: go to the section',
 
-    productsLabel: 'Products',
-    productsTitle: 'Introducing SprintAct: AI-native legal research software.',
-    productsDesc:
-      'SprintAct is built to help legal professionals search, compare and validate legal sources in a few seconds. It combines language understanding, source attribution and workflow support in one environment.',
-    productsTaglinePrecision: 'PRECISION',
-    productsTaglineSpeed: 'SPEED',
-    productsTaglineVersatility: 'VERSATILITY',
-    productsCta: 'Try SprintAct',
-    productsNote:
-      "SprintAct will run on its own domain at sprintact.eu while remaining part of Stele's product strategy.",
+    productLabel: 'Our product',
+    productTitle: "SprintAct, the lawyer's workspace",
+    productDesc:
+      'Research, sources and case files in a single working environment. SprintAct searches laws and case law starting from a question in natural language, shows the text in force on the date you need and links every provision to the decisions that cite it.',
+    productTabs: 'SprintAct capabilities',
+    productCap1Title: 'Natural-language search',
+    productCap1Desc:
+      'Write the question as you would ask a colleague. SprintAct searches national, regional and European legislation and case law.',
+    productCap2Title: 'The case file at the centre',
+    productCap2Desc:
+      'The documents, laws, rulings and searches of a matter live together. The documents you upload are encrypted and only you can see them.',
+    productCap3Title: 'Laws over time',
+    productCap3Desc:
+      'Compare two versions of an article and trace which act amended it, and when.',
+    productCap4Title: 'Cody, the AI assistant',
+    productCap4Desc:
+      'It works on the case file, justifies every step with sources and follows your templates and your method.',
+    productPanel1:
+      'SprintAct search: the query "reclamo assicurativo autorità competente" and three results, the first being art. 7 of the Private Insurance Code.',
+    productPanel2:
+      'SprintAct case file "Reclamo assicurativo": documents, conversations, saved sources and saved searches.',
+    productPanel3:
+      'SprintAct, art. 7 of the Private Insurance Code in Compare mode: the deleted text in red, the new text in green, and the amending act, Legislative Decree 74/2015.',
+    productPanel4:
+      'Cody answers in the case file: the complaint goes to IVASS, with three cited sources and the original passage of art. 7 open beside the answer.',
+    productCta: 'Discover SprintAct on sprintact.eu',
 
-    developersLabel: 'Development',
-    developersTitle: 'Open material for builders and curious minds.',
-    developersDesc:
-      'We publish resources for developers and technical teams interested in our architecture and non-enriched data workflows.',
-    developersPoint1:
-      'Reference material about data ingestion and legal-source indexing pipelines for the Italian context.',
-    developersPoint2:
-      'Reusable utilities and examples that help teams test legal retrieval quality and prompt behavior.',
-    developersPoint3:
-      'Public repositories and notes designed to make our technical direction inspectable and discussable.',
-    developersSecondary:
-      'Our goal is to earn trust in the tech ecosystem through transparency and practical documentation.',
-    developersCta: 'Visit our GitHub organization',
+    visionLabel: 'Vision',
+    visionTitle: 'From legal research to legal intelligence',
+    visionDesc:
+      "SprintAct is the first step. We want to turn law into structured, verifiable knowledge in which rules, versions and rulings are linked to each other. It is the basis on which Stele's next tools are born: from monitoring regulatory changes to supporting decisions.",
+    visionNow: 'Today, with SprintAct',
+    visionStep1Title: 'Research',
+    visionStep1Desc: 'Which rule applies, in the right version, and how has it been interpreted?',
+    visionStep2Title: 'Monitoring',
+    visionStep2Desc: 'What is coming into force, and what will?',
+    visionStep3Title: 'Impact',
+    visionStep3Desc: 'How do new rules affect companies, processes and contracts?',
+    visionStep4Title: 'Decision',
+    visionStep4Desc: 'How to decide today, knowing how the legal framework may evolve?',
 
     missionLabel: 'Mission',
-    missionTitle: 'Responsible AI for a stronger information democracy.',
-    missionDesc1:
-      'Stele believes in the conscious use of AI to make institutional data truly accessible to companies and citizens.',
-    missionDesc2:
-      'Our mission is to support a democratic information system where legal knowledge is verifiable, usable, and open to informed participation.',
+    missionTitle: 'Giving lawyers back the time for their craft',
+    missionDesc:
+      "A large part of a lawyer's day goes into looking for information, reconstructing legislation and keeping scattered documents in order. That time should go to legal reasoning, strategy and protecting the client. Stele was founded for this, and we believe technology should enhance the skills of the people who use it.",
+    missionP1Title: 'Rigour',
+    missionP1Desc: 'We start from the official texts and from the correct version of every rule.',
+    missionP2Title: 'Reliability',
+    missionP2Desc: 'Every answer points to the sources it comes from, and the reader can check it directly.',
+    missionP3Title: 'Transparency',
+    missionP3Desc: 'The professional always knows the scope of the search.',
+    missionP4Title: 'The professional at the centre',
+    missionP4Desc: "We build around the lawyer's method, and involve them in development.",
 
-    aboutUsTeam: 'Team',
-    dreamTeam: 'The dream team',
-    trustMe: "Trust me I'm an Engineer",
+    teamLabel: 'Team',
+    teamTitle: 'Four founders, from AI to the market',
+    teamDesc:
+      'We come from different backgrounds and share one goal: building tools a professional can trust.',
+    teamHiring: 'We are looking for a lawyer to build SprintAct with us.',
+    teamHiringLink: 'See the open position',
 
-    contactTitle: 'Contact Us',
-    contactDesc: 'Tell us what you are building and how Stele can support your legal intelligence workflow.',
+    contactTitle: "Let's talk",
+    contactDesc:
+      'Are you a lawyer, a firm or an institution and want to understand whether we can work together?',
+    contactDesc2: 'Write to us: one of the founders will reply.',
     contactName: 'Name',
-    contactNamePlaceholder: 'Your name',
     contactEmail: 'Email',
-    contactEmailPlaceholder: 'name@domain.com',
     contactMessage: 'Message',
-    contactMessagePlaceholder: 'Describe your context, use case, or partnership idea...',
-    contactSend: 'Send Message',
+    contactSend: 'Send message',
     contactSending: 'Sending...',
-    contactDirect: 'Direct contact',
-    contactFollow: 'Follow Stele',
-    contactNote:
-      'We usually reply quickly to product requests, research collaborations, and institutional partnerships.',
+    contactErrName: 'Enter your name.',
+    contactErrEmail: 'Enter your email address.',
+    contactErrEmailFormat: 'Enter a valid email address, for example name@domain.com.',
+    contactErrMessage: 'Write a message.',
+    contactFormErrors: 'The form has errors. Check the fields marked below.',
+    contactLinks: 'Contacts',
     messageSent: 'Message sent!',
     messageSentDesc: "We've received your message and will respond shortly.",
     messageFailed: 'Message failed to send',
     messageFailedDesc: 'There was a problem sending your message. Please try again.',
 
-    footerTagline: 'Stele S.r.l',
+    footerSite: 'Site',
+    footerCompany: 'Company',
+    footerInfo: 'Legal information',
+    footerFollow: 'Follow us',
+    footerLegalNotes: 'Legal notes',
+    footerAddress: 'Italy',
+    footerVat: 'VAT no.',
+    footerLinks: 'Footer links',
     footerPrivacy: 'Privacy Policy',
     footerCookie: 'Cookie Policy',
-    allRights: 'All Rights Reserved'
   },
   it: {
-    navResearch: 'Ricerca',
-    navProducts: 'Prodotti',
-    navDevelopers: 'Sviluppo',
-    navMissionTeam: 'Mission e Team',
+    skipLink: 'Vai al contenuto',
+    navMain: 'Principale',
+    navHomeLabel: 'Stele, inizio pagina',
+    navProduct: 'Prodotto',
+    navVision: 'Visione',
+    navMission: 'Mission',
+    navTeam: 'Team',
     navContact: 'Contatti',
-    ctaTrySprintAct: 'Prova SprintAct',
+    navCareers: 'Lavora con noi',
+    navBadge: '1 posizione aperta',
+    ctaSprintAct: 'Scopri SprintAct',
+    menuOpen: 'Apri il menu',
+    menuClose: 'Chiudi il menu',
+    langLabel: 'Cambia lingua',
+    newTab: 'si apre in una nuova scheda',
 
-    heroEyebrow: 'Legal tech AI-native per il mercato italiano',
-    heroTitle: 'Stele costruisce strumenti AI affidabili per il',
-    heroTitleHighlight: 'settore legale italiano',
+    heroTitle: "Costruiamo l'intelligenza artificiale per chi lavora con il diritto",
     heroDesc:
-      "Progettiamo prodotti legal tech che rendono i dati istituzionali e normativi più accessibili, verificabili e utili nelle decisioni quotidiane. SprintAct è la nostra prima linea di prodotto, pensata per la ricerca legale con velocità e precisione.",
-    heroPrimaryCta: 'Scopri la visione prodotto',
-    heroSecondaryCta: 'Prova SprintAct',
-    heroStat1: 'Focus società: Stele è la piattaforma su cui costruiamo nel lungo periodo.',
-    heroStat2: 'Focus prodotto: SprintAct, software AI-native per la ricerca legale.',
-    heroStat3: 'Focus mercato: team legali, professionisti, istituzioni.',
+      "Stele è una società legal tech di Bergamo. Sviluppiamo software in cui ogni risposta dell'AI si può verificare sulle fonti, perché un avvocato deve poter controllare ciò che firma.",
+    heroCtaVision: 'La nostra visione',
+    heroSteleSr:
+      'La stele, simbolo di Stele, composta da quattro blocchi: Ricerca, Monitoraggio, Impatto, Decisione.',
+    heroPhases: 'Le quattro fasi',
+    heroProductCap: 'Il nostro prodotto',
+    heroProductLink: 'SprintAct, il nostro prodotto: vai alla sezione',
 
-    researchLabel: 'Ricerca',
-    researchTitle: 'Paper, case study e ricerca applicata per costruire credibilità legale.',
-    researchDesc:
-      'Stele investe in attività di ricerca per rafforzare la propria reputazione nel mondo giuridico. In questa sezione raccogliamo paper, case study e collaborazioni che documentano metodo e risultati.',
-    researchPoint1Title: 'Paper su AI legale applicata',
-    researchPoint1Desc:
-      'Pubblicazioni su qualità del retrieval, grounding delle fonti ed explainability dei sistemi AI in ambito normativo italiano.',
-    researchPoint2Title: 'Case study con studi e istituzioni',
-    researchPoint2Desc:
-      'Analisi operative che mostrano come migliorano i flussi di lavoro legali quando qualità del dato, tracciabilità e automazione sono allineate.',
-    researchPoint3Title: 'Note metodologiche aperte',
-    researchPoint3Desc:
-      'Documenti tecnici e note di lavoro che chiariscono assunzioni, limiti e benchmark adottati nei nostri modelli.',
+    productLabel: 'Il nostro prodotto',
+    productTitle: "SprintAct, lo spazio di lavoro dell'avvocato",
+    productDesc:
+      'Ricerca, fonti e fascicoli in un unico ambiente di lavoro. SprintAct cerca tra norme e sentenze partendo da una domanda in linguaggio naturale, mostra il testo in vigore alla data che ti serve e collega ogni disposizione alle decisioni che la citano.',
+    productTabs: 'Capacità di SprintAct',
+    productCap1Title: 'Ricerca in linguaggio naturale',
+    productCap1Desc:
+      'Scrivi la domanda come la faresti a un collega. SprintAct cerca nella normativa nazionale, regionale ed europea e nella giurisprudenza.',
+    productCap2Title: 'Il fascicolo al centro',
+    productCap2Desc:
+      'Documenti, norme, sentenze e ricerche di una pratica vivono insieme. I documenti che carichi sono cifrati e li vedi solo tu.',
+    productCap3Title: 'Le norme nel tempo',
+    productCap3Desc:
+      'Confronta due versioni di un articolo e ricostruisci quale atto lo ha modificato, e quando.',
+    productCap4Title: "Cody, l'assistente AI",
+    productCap4Desc:
+      'Lavora sul fascicolo, motiva ogni passaggio con le fonti e segue i tuoi modelli e il tuo metodo.',
+    productPanel1:
+      "La ricerca di SprintAct: la domanda «reclamo assicurativo autorità competente» e tre risultati, il primo è l'art. 7 del Codice delle assicurazioni private.",
+    productPanel2:
+      'Il fascicolo «Reclamo assicurativo» in SprintAct: documenti, conversazioni, fonti salvate e ricerche salvate.',
+    productPanel3:
+      "SprintAct, l'art. 7 del Codice delle assicurazioni private in modalità Confronta: il testo eliminato in rosso, il testo nuovo in verde e l'atto che ha modificato la norma, il D.lgs. 74/2015.",
+    productPanel4:
+      "Cody risponde nel fascicolo: il reclamo va presentato all'IVASS, con tre fonti citate e il passaggio originale dell'art. 7 aperto accanto alla risposta.",
+    productCta: 'Scopri SprintAct su sprintact.eu',
 
-    productsLabel: 'Prodotti',
-    productsTitle: 'Nasce SprintAct: software AI-native per la ricerca legale.',
-    productsDesc:
-      'SprintAct aiuta i professionisti del diritto a cercare, confrontare e validare fonti legali in pochi secondi. Unisce comprensione linguistica, attribuzione delle fonti e supporto al workflow in un unico ambiente.',
-    productsTaglinePrecision: 'PRECISO',
-    productsTaglineSpeed: 'VELOCE',
-    productsTaglineVersatility: 'VERSATILE',
-    productsCta: 'Prova SprintAct',
-    productsNote:
-      'SprintAct avrà un dominio dedicato su sprintact.eu e resterà parte centrale della strategia prodotto di Stele.',
-
-    developersLabel: 'Sviluppo',
-    developersTitle: 'Materiali aperti per developer e team tecnici.',
-    developersDesc:
-      'Condividiamo risorse utili a sviluppatori e persone curiose della nostra architettura e dei workflow dati non arricchiti.',
-    developersPoint1:
-      'Materiale di riferimento su pipeline di ingestione dati e indicizzazione di fonti legali nel contesto italiano.',
-    developersPoint2:
-      'Utility riutilizzabili ed esempi per testare retrieval legale e comportamento dei prompt.',
-    developersPoint3:
-      'Repository pubblici e note tecniche per rendere osservabile e discutibile la nostra direzione tecnologica.',
-    developersSecondary:
-      'Vogliamo costruire reputazione nel mondo tech attraverso trasparenza e documentazione concreta.',
-    developersCta: 'Visita la nostra organizzazione GitHub',
+    visionLabel: 'Visione',
+    visionTitle: 'Dalla ricerca legale alla legal intelligence',
+    visionDesc:
+      'SprintAct è il primo passo. Vogliamo trasformare il diritto in una conoscenza strutturata e verificabile, in cui norme, versioni e sentenze sono collegate tra loro. È la base su cui nascono i prossimi strumenti di Stele: dal monitoraggio delle novità normative fino al supporto alle decisioni.',
+    visionNow: 'Oggi, con SprintAct',
+    visionStep1Title: 'Ricerca',
+    visionStep1Desc: 'Quale norma si applica, nella versione giusta, e come è stata interpretata?',
+    visionStep2Title: 'Monitoraggio',
+    visionStep2Desc: 'Cosa entra in vigore, e cosa entrerà?',
+    visionStep3Title: 'Impatto',
+    visionStep3Desc: 'Quali effetti hanno le nuove norme su imprese, processi e contratti?',
+    visionStep4Title: 'Decisione',
+    visionStep4Desc: 'Come decidere oggi, sapendo come potrebbe evolvere il quadro normativo?',
 
     missionLabel: 'Mission',
-    missionTitle: 'Mission di Stele',
-    missionDesc1:
-      "Stele crede nell'uso consapevole della tecnologia AI per rendere accessibili i dati delle istituzioni a imprese e cittadinanza.",
-    missionDesc2:
-      "La nostra missione è favorire un sistema democratico dell'informazione, in cui la conoscenza legale sia verificabile, utile e aperta alla partecipazione informata.",
+    missionTitle: "Restituire all'avvocato il tempo per il suo mestiere",
+    missionDesc:
+      'Una parte grande della giornata di un avvocato se ne va nel cercare informazioni, ricostruire la normativa e tenere in ordine documenti sparsi. Quel tempo dovrebbe andare al ragionamento giuridico, alla strategia e alla tutela del cliente. Stele è nata per questo, e crediamo che la tecnologia debba valorizzare le competenze di chi la usa.',
+    missionP1Title: 'Rigore',
+    missionP1Desc: 'Partiamo dai testi ufficiali e dalla versione corretta di ogni norma.',
+    missionP2Title: 'Affidabilità',
+    missionP2Desc: 'Ogni risposta rimanda alle fonti da cui nasce, e chi legge può controllarla direttamente.',
+    missionP3Title: 'Trasparenza',
+    missionP3Desc: 'Il professionista conosce sempre il perimetro della ricerca.',
+    missionP4Title: 'Centralità del professionista',
+    missionP4Desc: "Costruiamo attorno al metodo dell'avvocato, e lo coinvolgiamo nello sviluppo.",
 
-    aboutUsTeam: 'Team',
-    trustMe: "Trust me I'm an Engineer",
+    teamLabel: 'Team',
+    teamTitle: "Quattro fondatori, dall'AI al mercato",
+    teamDesc:
+      'Veniamo da percorsi diversi e condividiamo lo stesso obiettivo: costruire strumenti di cui un professionista possa fidarsi.',
+    teamHiring: 'Cerchiamo un avvocato che costruisca SprintAct con noi.',
+    teamHiringLink: 'Vedi la posizione aperta',
 
-    contactTitle: 'Contattaci',
-    contactDesc: 'Raccontaci cosa stai costruendo e come Stele può supportare il tuo workflow di legal intelligence.',
+    contactTitle: 'Parliamone',
+    contactDesc:
+      "Sei un avvocato, uno studio o un'istituzione e vuoi capire se possiamo lavorare insieme?",
+    contactDesc2: 'Scrivici: ti risponde uno dei fondatori.',
     contactName: 'Nome',
-    contactNamePlaceholder: 'Il tuo nome',
     contactEmail: 'Email',
-    contactEmailPlaceholder: 'nome@dominio.com',
     contactMessage: 'Messaggio',
-    contactMessagePlaceholder: "Descrivi il tuo caso d'uso o la tua idea di collaborazione...",
     contactSend: 'Invia messaggio',
     contactSending: 'Invio in corso...',
-    contactDirect: 'Contatto diretto',
-    contactFollow: 'Segui Stele',
-    contactNote:
-      'Rispondiamo rapidamente a richieste sul prodotto, collaborazioni di ricerca e partnership istituzionali.',
+    contactErrName: 'Scrivi il tuo nome.',
+    contactErrEmail: 'Scrivi il tuo indirizzo email.',
+    contactErrEmailFormat: 'Scrivi un indirizzo email valido, ad esempio nome@dominio.com.',
+    contactErrMessage: 'Scrivi un messaggio.',
+    contactFormErrors: 'Il modulo contiene errori. Controlla i campi indicati sotto.',
+    contactLinks: 'Contatti',
     messageSent: 'Messaggio inviato!',
     messageSentDesc: 'Abbiamo ricevuto il tuo messaggio e ti risponderemo a breve.',
     messageFailed: 'Invio non riuscito',
     messageFailedDesc: 'Si è verificato un problema. Riprova.',
 
-    footerTagline: 'Stele S.r.l',
+    footerSite: 'Sito',
+    footerCompany: 'Azienda',
+    footerInfo: 'Informative',
+    footerFollow: 'Seguici',
+    footerLegalNotes: 'Note legali',
+    footerAddress: 'Italia',
+    footerVat: 'P. IVA',
+    footerLinks: 'Collegamenti nel footer',
     footerPrivacy: 'Privacy Policy',
     footerCookie: 'Cookie Policy',
-    allRights: 'Tutti i diritti riservati'
   }
 };
 
@@ -216,9 +274,13 @@ const getInitialLanguage = (): Language => {
     return 'it';
   }
 
-  const savedLanguage = localStorage.getItem('language');
-  if (savedLanguage === 'it' || savedLanguage === 'en') {
-    return savedLanguage;
+  try {
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage === 'it' || savedLanguage === 'en') {
+      return savedLanguage;
+    }
+  } catch {
+    /* storage can be blocked */
   }
 
   return detectBrowserLanguage();
@@ -228,7 +290,13 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>(() => getInitialLanguage());
 
   useEffect(() => {
-    localStorage.setItem('language', language);
+    try {
+      localStorage.setItem('language', language);
+    } catch {
+      /* storage can be blocked */
+    }
+    // the lang attribute follows the language switch
+    document.documentElement.lang = language;
   }, [language]);
 
   const t = (key: TranslationKey): string => {
