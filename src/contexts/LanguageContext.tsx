@@ -21,7 +21,7 @@ export const translations = {
 
     heroTitle: 'We build artificial intelligence for people who work with the law',
     heroDesc:
-      'Stele is a legal tech company based in Bergamo. We develop software in which every AI answer can be checked against its sources, because a lawyer must be able to verify what they sign.',
+      'We build software for lawyers and law firms. The AI cites the laws and rulings behind every answer, and the lawyer decides what to use.',
     heroCtaVision: 'Our vision',
     heroSteleSr:
       'The stele, the symbol of Stele, made of four blocks: Research, Monitoring, Impact, Decision.',
@@ -54,7 +54,7 @@ export const translations = {
       'SprintAct, art. 7 of the Private Insurance Code in Compare mode: the deleted text in red, the new text in green, and the amending act, Legislative Decree 74/2015.',
     productPanel4:
       'Cody answers in the case file: the complaint goes to IVASS, with three cited sources and the original passage of art. 7 open beside the answer.',
-    productCta: 'Discover SprintAct on sprintact.eu',
+    productCta: 'Discover SprintAct',
 
     visionLabel: 'Vision',
     visionTitle: 'From legal research to legal intelligence',
@@ -140,7 +140,7 @@ export const translations = {
 
     heroTitle: "Costruiamo l'intelligenza artificiale per chi lavora con il diritto",
     heroDesc:
-      "Stele è una società legal tech di Bergamo. Sviluppiamo software in cui ogni risposta dell'AI si può verificare sulle fonti, perché un avvocato deve poter controllare ciò che firma.",
+      "Sviluppiamo software per avvocati e studi legali. L'AI cita le norme e le sentenze su cui si basa ogni risposta, e l'avvocato decide cosa usare.",
     heroCtaVision: 'La nostra visione',
     heroSteleSr:
       'La stele, simbolo di Stele, composta da quattro blocchi: Ricerca, Monitoraggio, Impatto, Decisione.',
@@ -173,7 +173,7 @@ export const translations = {
       "SprintAct, l'art. 7 del Codice delle assicurazioni private in modalità Confronta: il testo eliminato in rosso, il testo nuovo in verde e l'atto che ha modificato la norma, il D.lgs. 74/2015.",
     productPanel4:
       "Cody risponde nel fascicolo: il reclamo va presentato all'IVASS, con tre fonti citate e il passaggio originale dell'art. 7 aperto accanto alla risposta.",
-    productCta: 'Scopri SprintAct su sprintact.eu',
+    productCta: 'Scopri SprintAct',
 
     visionLabel: 'Visione',
     visionTitle: 'Dalla ricerca legale alla legal intelligence',
